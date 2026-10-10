@@ -36,7 +36,7 @@ function Browser({ d, dark, sizes, priority }: { d: Demo; dark?: boolean; sizes:
         <div className="absolute inset-x-0 top-0 transition-transform duration-[1.8s] ease-out-expo group-hover:-translate-y-1/2 group-focus-visible:-translate-y-1/2">
           <Image
             src={p.desktop}
-            alt={`The ${d.name} website, ${d.industry.toLowerCase()} — home page`}
+            alt={`The ${d.name} website (${d.industry.toLowerCase()}), home page`}
             placeholder="blur"
             sizes={sizes}
             priority={priority}
@@ -107,7 +107,7 @@ function Label({ d, index }: { d: Demo; index: number }) {
   return (
     <div className="hud flex justify-between gap-4 opacity-70">
       <span>
-        {sceneNo(d.id)} — Project {String(index + 1).padStart(2, "0")}
+        {sceneNo(d.id)} · Project {String(index + 1).padStart(2, "0")}
       </span>
       <span>{d.industry}</span>
     </div>
@@ -145,7 +145,7 @@ function Tour({ d, light = false }: { d: Demo; light?: boolean }) {
   return (
     <div ref={ref} className="tour mt-12 md:mt-16" style={{ "--tour-speed": "75s" } as CSSProperties}>
       <p className="hud mb-5 text-center opacity-70 lg:text-left">
-        Inside {d.name} — {shots.length} screens from the live site
+        Inside {d.name}: {shots.length} screens from the live site
       </p>
       <div className="relative -mx-5 overflow-hidden md:-mx-10">
         <span
@@ -167,12 +167,12 @@ function Tour({ d, light = false }: { d: Demo; light?: boolean }) {
                   tabIndex={loop === 1 ? -1 : 0}
                   onClick={(e) => open(d.id, e.currentTarget, i)}
                   className="group relative block w-full overflow-hidden rounded-[12px] text-left ring-1 ring-black/10"
-                  aria-label={`${d.name}: ${d.tour[i]} — open the project`}
+                  aria-label={`${d.name}: ${d.tour[i]}. Open the project`}
                 >
                   <span className="relative block aspect-[16/10]">
                     <Image
                       src={s}
-                      alt={`${d.name} — ${d.tour[i]}`}
+                      alt={`${d.name}: ${d.tour[i]}`}
                       fill
                       sizes="(min-width: 768px) 460px, 76vw"
                       className="object-cover object-top transition-transform duration-[1.2s] ease-out-expo group-hover:scale-[1.04]"
@@ -193,7 +193,7 @@ function Tour({ d, light = false }: { d: Demo; light?: boolean }) {
   );
 }
 
-/* ─────────────────── Selected work — every site at a glance ─────────────────── */
+/* ─────────────────── Selected work - every site at a glance ─────────────────── */
 function Overview() {
   const ref = useRef<HTMLElement>(null);
 
@@ -246,7 +246,7 @@ function Overview() {
       <div className="frame relative">
         <div className="ov-head grid grid-cols-1 gap-6 text-center lg:grid-cols-12 lg:items-end lg:text-left">
           <div className="lg:col-span-7">
-            <p className="hud text-dust">{sceneNo("work")} — Selected work</p>
+            <p className="hud text-dust">{sceneNo("work")} · Selected work</p>
             <h2 id="work-title" className="credit mt-4 text-[clamp(1.98rem,4.14vw,3.96rem)] [--w:84]">
               Every site,{" "}
               <span className="voice normal-case text-amber [font-variation-settings:normal]">
@@ -258,7 +258,7 @@ function Overview() {
             </h2>
           </div>
           <p className="voice mx-auto max-w-[40ch] text-[1.15rem] leading-[1.6] text-dust lg:col-span-5 lg:mx-0 lg:justify-self-end lg:text-right">
-            Concept websites designed and built end to end —{" "}
+            Concept sites, each designed and built end to end:{" "}
             {demos.map((d, i) => (
               <span key={d.id}>
                 <span
@@ -271,7 +271,7 @@ function Overview() {
                 {i < demos.length - 2 ? ", " : i === demos.length - 2 ? " and " : ""}
               </span>
             ))}
-            . Each has its own type, colour and motion.
+            . New type, colour and motion every time, because no two businesses should look alike.
           </p>
         </div>
 
@@ -321,7 +321,7 @@ function Overview() {
                       <AnchorLink
                         href={`#${d.id}`}
                         className="hud flex h-10 items-center rounded-full bg-tungsten px-4 text-void transition-colors hover:bg-amber"
-                        aria-label={`${d.name} — see the details`}
+                        aria-label={`See the ${d.name} details`}
                       >
                         Details
                       </AnchorLink>
@@ -346,7 +346,7 @@ function Overview() {
   );
 }
 
-/* ─────────────────── Project 1 · NOIR — the cinematic reveal ─────────────────── */
+/* ─────────────────── Project 1 · NOIR - the cinematic reveal ─────────────────── */
 function Noir({ d }: { d: Demo }) {
   const ref = useRef<HTMLElement>(null);
   useGSAP(
@@ -411,7 +411,7 @@ function Noir({ d }: { d: Demo }) {
   );
 }
 
-/* ─────────────────── Project 2 · VANTA — the editorial spread ─────────────────── */
+/* ─────────────────── Project 2 · VANTA - the editorial spread ─────────────────── */
 function Vanta({ d }: { d: Demo }) {
   const ref = useRef<HTMLElement>(null);
   const [info, setInfo] = useState(false);
@@ -510,7 +510,7 @@ function Vanta({ d }: { d: Demo }) {
   );
 }
 
-/* ─────────────────── Project 3 · ATELIER — the full-screen print ─────────────────── */
+/* ─────────────────── Project 3 · ATELIER - the full-screen print ─────────────────── */
 function Atelier({ d }: { d: Demo }) {
   const ref = useRef<HTMLElement>(null);
   useGSAP(
@@ -597,7 +597,7 @@ function Atelier({ d }: { d: Demo }) {
           <OpenPreview d={d} className="h-full" frame={false}>
             <Image
               src={previews[d.id].desktop}
-              alt={`The ${d.name} website — home page`}
+              alt={`The ${d.name} website, home page`}
               fill
               placeholder="blur"
               sizes="60vw"
@@ -608,7 +608,7 @@ function Atelier({ d }: { d: Demo }) {
         <div className="pointer-events-none absolute inset-0">
           <div className="at-over pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-10 text-white motion-reduce:hidden">
             <p className="hud opacity-80">
-              {sceneNo("atelier")} — Project 03 · {d.industry}
+              {sceneNo("atelier")} · Project 03 · {d.industry}
             </p>
             <p className="credit mt-3 text-[clamp(3.6rem,8.1vw,7.65rem)] [--w:96]">{d.name}</p>
           </div>
@@ -622,7 +622,7 @@ function Atelier({ d }: { d: Demo }) {
           <OpenPreview d={d} className="h-full">
             <Image
               src={previews[d.id].desktop}
-              alt={`The ${d.name} website — home page`}
+              alt={`The ${d.name} website, home page`}
               fill
               placeholder="blur"
               sizes="92vw"
@@ -639,7 +639,7 @@ function Atelier({ d }: { d: Demo }) {
   );
 }
 
-/* ─────────────────── Project 4 · NOVA — the layered experiment ─────────────────── */
+/* ─────────────────── Project 4 · NOVA - the layered experiment ─────────────────── */
 function Nova({ d }: { d: Demo }) {
   const ref = useRef<HTMLElement>(null);
   useGSAP(

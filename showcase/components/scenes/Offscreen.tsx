@@ -45,7 +45,7 @@ export function Offscreen() {
       <div className="frame">
         <div className="os-head grid grid-cols-1 gap-6 text-center md:grid-cols-12 md:items-end md:text-left">
           <div className="md:col-span-7">
-            <p className="hud text-smoke">{sceneNo("offscreen")} — Client work</p>
+            <p className="hud text-smoke">{sceneNo("offscreen")} · Client work</p>
             <h2 id="offscreen-title" className="voice mt-5 text-[clamp(1.98rem,3.78vw,3.6rem)] leading-[1]">
               The work that{" "}
               <Mark kind="circle" tone="coral">
@@ -55,7 +55,7 @@ export function Offscreen() {
             </h2>
           </div>
           <p className="mx-auto max-w-[38ch] text-[1.0625rem] leading-relaxed text-ink/75 md:col-span-4 md:col-start-9 md:mx-0">
-            Projects built for real clients, live on the web. Open any of them — or ask me to walk you through how it was built.
+            Real businesses, real deadlines, and sites you can open right now. If you want the story behind one, ask and I&rsquo;ll walk you through how it was built.
           </p>
         </div>
 

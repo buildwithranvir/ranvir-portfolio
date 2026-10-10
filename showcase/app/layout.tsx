@@ -3,7 +3,7 @@ import { Archivo, IBM_Plex_Mono, Newsreader } from "next/font/google";
 import { studio } from "@/lib/site";
 import "./globals.css";
 
-// Archivo's width axis (62–125) gives the film-credit display type its stretch;
+// Archivo's width axis (62-125) gives the film-credit display type its stretch;
 // Newsreader italic is the editorial "voice"; Plex Mono is the camera HUD.
 const archivo = Archivo({ subsets: ["latin"], axes: ["wdth"], variable: "--font-archivo" });
 const newsreader = Newsreader({ subsets: ["latin"], style: ["normal", "italic"], axes: ["opsz"], variable: "--font-newsreader" });
@@ -14,10 +14,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : studio.url,
   ),
-  title: `${studio.name} — ${studio.role}`,
+  title: `${studio.name} | ${studio.role}`,
   description: studio.description,
   openGraph: {
-    title: `${studio.name} — ${studio.tagline}`,
+    title: `${studio.name} | ${studio.tagline}`,
     description: studio.description,
     type: "website",
     siteName: studio.name,

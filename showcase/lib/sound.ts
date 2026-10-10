@@ -2,8 +2,8 @@
 
 /*
  * The site's sound, synthesised in the browser (no audio files, nothing to
- * download): a loud, cinematic score for the opening film — every hit is
- * scheduled by the film's own timeline, so it stays in sync — a soft ambient
+ * download): a loud, cinematic score for the opening film - every hit is
+ * scheduled by the film's own timeline, so it stays in sync - a soft ambient
  * bed for the rest of the site, and quiet UI ticks.
  *
  * Browsers only allow sound after a click or tap, so nothing plays until the
@@ -96,7 +96,7 @@ function build() {
 
 /**
  * Call from inside a click/tap/keypress: creates and wakes the audio (iPhones
- * included — also past the silent switch) and applies the visitor's choice.
+ * included - also past the silent switch) and applies the visitor's choice.
  */
 export function unlock(wantSound = soundPreferred()) {
   try {
@@ -382,7 +382,7 @@ export const intro = {
     o.start(t);
     o.stop(t + 1.7);
   }),
-  /** 0s: the projector starts — gate clatter and a drone that climbs. */
+  /** 0s: the projector starts - gate clatter and a drone that climbs. */
   leader: cue((t) => {
     for (let i = 0; i < 28; i++) tick(t + i * 0.083, introBus, 0.08 + (i % 2) * 0.05);
     const g = tone(t, note(33), 2.4, introBus, 0.32, "sawtooth", 0.6);
@@ -397,7 +397,7 @@ export const intro = {
   }),
   /** 2.3s: the leader zooms away */
   out: cue((t) => whoosh(t, 0.45, introBus, 0.6, false, 0)),
-  /** 2.6s: the montage's beat — scheduled in one go, one bar per cut */
+  /** 2.6s: the montage's beat - scheduled in one go, one bar per cut */
   montage: cue((t, cuts: number, step: number, every: number) => {
     const bass = [33, 33, 29, 29, 36, 36, 31, 31];
     for (let i = 0; i < cuts; i++) {
@@ -422,7 +422,7 @@ export const intro = {
       .connect(n)
       .connect(introBus);
   }),
-  /** each slide lands: a hit — and a glitch as the AI slide decodes its word */
+  /** each slide lands: a hit - and a glitch as the AI slide decodes its word */
   slide: cue((t, i: number) => {
     impact(t + 0.05, introBus, 0.4);
     if (i === 2) glitch(t + 0.15, introBus, 14, 0.16);
@@ -435,7 +435,7 @@ export const intro = {
         0.1,
       );
   }),
-  /** the drop — the sites fly in */
+  /** the drop - the sites fly in */
   assembly: cue((t) => {
     impact(t, introBus, 1.1);
     braam(t, introBus, 2.6, 41);

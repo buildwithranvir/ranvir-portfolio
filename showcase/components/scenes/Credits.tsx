@@ -41,7 +41,7 @@ function Chars({ text, className = "" }: { text: string; className?: string }) {
   );
 }
 
-/** Delhi's local time, ticking — so visitors anywhere know when they'll hear back. */
+/** Delhi's local time, ticking - so visitors anywhere know when they'll hear back. */
 function DelhiClock() {
   const [now, setNow] = useState<Date | null>(null);
   useEffect(() => {
@@ -71,17 +71,17 @@ function DelhiClock() {
       </span>
       <span className="hud flex items-center gap-2 text-dust">
         <span className={`h-1.5 w-1.5 rounded-full ${awake ? "rec-blink bg-go" : "bg-amber"}`} />
-        {now ? (awake ? "Daytime in Delhi" : "Night in Delhi — I’ll reply in the morning") : " "}
+        {now ? (awake ? "Daytime in Delhi" : "Night in Delhi. I’ll reply in the morning") : " "}
       </span>
     </div>
   );
 }
 
 /**
- * Contact — the finale. A marquee that races with the scroll, a headline that
+ * Contact - the finale. A marquee that races with the scroll, a headline that
  * lights up letter by letter, a record button orbited by its own caption, a
  * brief you put together by tapping (it becomes a ready-to-send WhatsApp
- * message), Delhi's clock, the channels, the credits roll — and an iris that
+ * message), Delhi's clock, the channels, the credits roll - and an iris that
  * opens on "Thank you."
  */
 export function Credits() {
@@ -97,7 +97,7 @@ export function Credits() {
           .join(", ")
           .replace(/, ([^,]*)$/, " and $1")
       : "a project";
-    return `Hi Ranvir!${name.trim() ? ` I'm ${name.trim()}.` : ""} I'd like to talk about ${what}.${when ? ` Timing: ${when.toLowerCase()}.` : ""}`;
+    return `Hi Ranvir,${name.trim() ? ` I'm ${name.trim()}.` : ""} I'd like to talk about ${what}.${when ? ` Timing: ${when.toLowerCase()}.` : ""}`;
   }, [pick, when, name]);
   const waHref = `https://wa.me/${studio.phoneHref.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
 
@@ -340,7 +340,7 @@ export function Credits() {
 
       <div className="frame relative pt-20 md:pt-28">
         <div className="cr-top hud flex justify-between border-b border-tungsten/15 pb-4 text-dust">
-          <span>{sceneNo("contact")} — Contact</span>
+          <span>{sceneNo("contact")} · Contact</span>
           <span className="flex items-center gap-2">
             <span className="rec-blink h-1.5 w-1.5 rounded-full bg-rec" /> Open for new projects
           </span>
@@ -375,7 +375,7 @@ export function Credits() {
                 </span>
               )}
               <p className="voice text-[clamp(1.03rem,1.53vw,1.35rem)] leading-snug text-dust">
-                Tell me what you&rsquo;re building — a website, an app, an agent or something stranger. I reply{" "}
+                Tell me what you&rsquo;re building: a website, an app, an agent or something stranger. No sales team in between. I reply{" "}
                 <Mark kind="circle" tone="pink">
                   personally.
                 </Mark>

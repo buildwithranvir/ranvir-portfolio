@@ -12,7 +12,7 @@ import { intro as sx, setSoundPreferred, soundPreferred, subscribeSound, unlock 
 const W1 = "RANVIR";
 const W2 = "KAWATRA";
 
-// The montage: four slides, slow enough to read — a big word, its line, and a
+// The montage: four slides, slow enough to read - a big word, its line, and a
 // different picture trick on each. `from`: the side the slide comes in from
 // (a moving mask: transforms only, no clip-path).
 type Slide = {
@@ -91,7 +91,7 @@ const tc = (s: number) => {
 };
 
 /**
- * The opening film — about ten seconds, played on every visit and again from
+ * The opening film - about ten seconds, played on every visit and again from
  * the "Play intro" button. Skippable at any moment (button, Esc, Enter, Space).
  *  1. Leader: a film countdown, 3 · 2 · 1, the hand sweeping round.
  *  2. Montage: four slides, each a word and its line over the real sites.
@@ -225,7 +225,7 @@ function Film({ phone, replay }: { phone: boolean; replay: boolean }) {
           },
         });
 
-        /* ── 1 · Leader (0 – 2.4s) ── */
+        /* ── 1 · Leader (0 - 2.4s) ── */
         tl.set(".in-w1, .in-w2", { transformOrigin: "0% 0%" })
           .set(".in-stage", { autoAlpha: 1 })
           .to(boot, { scale: 14, autoAlpha: 0, duration: 0.5, ease: "power2.in" }, 0)
@@ -244,7 +244,7 @@ function Film({ phone, replay }: { phone: boolean; replay: boolean }) {
         });
         tl.to(".in-leader", { scale: 0.35, autoAlpha: 0, duration: 0.45, ease: "power3.in" }, 2.65).call(sx.out, [], 2.65);
 
-        /* ── 2 · Montage (2.95 – 8.35s): four slides, about 1.35s each ── */
+        /* ── 2 · Montage (2.95 - 8.35s): four slides, about 1.35s each ── */
         const M = 2.95;
         const D = 1.35;
         q(".in-cut").forEach((cut, i) => {
@@ -315,7 +315,7 @@ function Film({ phone, replay }: { phone: boolean; replay: boolean }) {
           montageEnd + 0.3,
         );
 
-        /* ── 3 · Assembly (5.1 – 7.1s) ── */
+        /* ── 3 · Assembly (5.1 - 7.1s) ── */
         const A = montageEnd + 0.3;
         const W = window.innerWidth;
         const H = window.innerHeight;
@@ -349,7 +349,7 @@ function Film({ phone, replay }: { phone: boolean; replay: boolean }) {
           .to(".in-dim", { opacity: 0, duration: 0.4, ease: "power2.in" }, A + 1.95)
           .to(".in-grid-in", { scale: 0.2, rotateZ: 30, opacity: 0, duration: 0.6, ease: "power3.in" }, A + 1.9);
 
-        /* ── 4 · Title (7.2 – 9.0s) ── */
+        /* ── 4 · Title (7.2 - 9.0s) ── */
         const T = A + 2.15;
         tl.fromTo(".in-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "expo.inOut" }, T - 0.25)
           .fromTo(".in-flash", { opacity: 0.3 }, { opacity: 0, duration: 0.6, immediateRender: false }, T)
@@ -371,7 +371,7 @@ function Film({ phone, replay }: { phone: boolean; replay: boolean }) {
           .from(".in-line > *", { opacity: 0, y: 14, duration: 0.6, stagger: 0.05 }, T + 0.7)
           .to(".in-rule", { scaleX: 0, transformOrigin: "100% 50%", duration: 0.6, ease: "expo.inOut" }, T + 1.3);
 
-        /* ── 5 · Pull-back (9.0 – 10.2s) ── */
+        /* ── 5 · Pull-back (9.0 - 10.2s) ── */
         const P = T + 1.75;
         tl.addLabel("pull", P)
           .call(sx.land, [], P)
@@ -395,7 +395,7 @@ function Film({ phone, replay }: { phone: boolean; replay: boolean }) {
         return tl;
       };
 
-      // the film only rolls once its screenshots are decoded (no stutter on the first cuts) — never waiting more than 2.5s
+      // the film only rolls once its screenshots are decoded (no stutter on the first cuts) - never waiting more than 2.5s
       const ready = Promise.race([
         Promise.all(Array.from(root.querySelectorAll<HTMLImageElement>(".in-film img")).map((img) => img.decode().catch(() => {}))),
         new Promise((r) => setTimeout(r, 2500)),
@@ -513,7 +513,7 @@ function Film({ phone, replay }: { phone: boolean; replay: boolean }) {
   );
 
   return (
-    // a click or tap anywhere on the first card begins the film — even in the instant before the card has faded in
+    // a click or tap anywhere on the first card begins the film - even in the instant before the card has faded in
     <div ref={ref} className="absolute inset-0" onClick={() => act.current.begin?.()}>
       <div aria-hidden className="in-stage in-film pointer-events-none invisible absolute inset-0">
         {/* 1 · leader */}
@@ -591,7 +591,7 @@ function Film({ phone, replay }: { phone: boolean; replay: boolean }) {
               )}
               <div className="absolute inset-0 flex flex-col items-center justify-center px-5 text-center">
                 <p className="in-cut-tag hud mb-4 text-tungsten/75">
-                  {String(i + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")} — {sl.site}
+                  {String(i + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")} · {sl.site}
                 </p>
                 <p
                   className="in-cut-word credit overflow-hidden whitespace-nowrap pb-[0.04em] pt-[0.1em] leading-[0.9] text-tungsten [--w:110] [text-shadow:0_6px_30px_rgb(0_0_0/0.6)]"
@@ -656,7 +656,7 @@ function Film({ phone, replay }: { phone: boolean; replay: boolean }) {
             <Word text={W1} className="in-w1 self-start text-[12.6vw] sm:text-[clamp(2.7rem,8.6vw,8.8rem)]" />
             <Word text={W2} className="in-w2 self-end text-[12.6vw] sm:text-[clamp(2.7rem,8.6vw,8.8rem)]" />
             <p className="in-line voice mt-5 flex flex-wrap gap-x-[0.3em] self-start text-[clamp(1rem,1.8vw,1.45rem)] text-dust">
-              {"Creative web developer — websites, apps & AI agents.".split(" ").map((w, i) => (
+              {"Creative web developer. Websites, apps and AI agents.".split(" ").map((w, i) => (
                 <span key={i} className="inline-block">
                   {w}
                 </span>
@@ -702,7 +702,7 @@ function Film({ phone, replay }: { phone: boolean; replay: boolean }) {
               <span className="rec-blink h-1.5 w-1.5 rounded-full bg-rec" /> Ranvir Kawatra · Portfolio
             </p>
             <p className="voice text-[clamp(2.4rem,5vw,4.4rem)] leading-[1.02] text-tungsten">Click anywhere to begin</p>
-            <p className="max-w-[40ch] text-[1rem] leading-relaxed text-dust">A ten-second film — best with the sound up.</p>
+            <p className="max-w-[40ch] text-[1rem] leading-relaxed text-dust">A ten-second film. Best with the sound up.</p>
             <SoundChip />
           </div>
         </div>
@@ -734,8 +734,8 @@ function Film({ phone, replay }: { phone: boolean; replay: boolean }) {
                 <span className="hidden landscape:inline">Tap anywhere to start</span>
               </p>
               <p className="max-w-[30ch] text-[0.95rem] leading-relaxed text-dust">
-                <span className="landscape:hidden">Either way — then tap anywhere to start. Sound up!</span>
-                <span className="hidden landscape:inline">Turn the sound up — it&rsquo;s a loud one.</span>
+                <span className="landscape:hidden">Either way works. Then tap anywhere to start, with the sound up.</span>
+                <span className="hidden landscape:inline">Turn the sound up. It&rsquo;s a loud one.</span>
               </p>
               <SoundChip />
               <p className="hud text-dust/70 landscape:hidden">Or just tap now to watch it upright</p>

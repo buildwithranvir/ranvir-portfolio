@@ -29,7 +29,7 @@ export function Method() {
       <div className="frame grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-4">
           <div className="text-center lg:sticky lg:top-28 lg:text-left">
-            <p className="hud text-smoke">{sceneNo("method")} — Process</p>
+            <p className="hud text-smoke">{sceneNo("method")} · Process</p>
             <h2 id="method-title" className="voice mt-5 text-[clamp(1.98rem,3.42vw,3.24rem)] leading-[1]">
               How I{" "}
               <Mark kind="box" tone="sun">
@@ -37,7 +37,7 @@ export function Method() {
               </Mark>
             </h2>
             <p className="mx-auto mt-6 max-w-[30ch] text-[1.0625rem] leading-relaxed text-ink/75 lg:mx-0">
-              Every concept on this page started from a blank page. Yours would too.
+              Every site on this page began as a blank page, and yours would too. These six principles decide what goes on it.
             </p>
           </div>
         </div>

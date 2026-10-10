@@ -8,7 +8,7 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, Flip, ScrambleTextPlugin, useGSAP);
-// Phones: the address bar sliding in and out resizes the viewport — don't re-measure every trigger for it (it causes jumps).
+// Phones: the address bar sliding in and out resizes the viewport - don't re-measure every trigger for it (it causes jumps).
 ScrollTrigger.config({ ignoreMobileResize: true });
 
 /** Media query used with gsap.matchMedia() so every effect respects reduced motion. */

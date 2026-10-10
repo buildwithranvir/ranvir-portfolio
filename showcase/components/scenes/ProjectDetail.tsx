@@ -54,7 +54,7 @@ export function ProjectDetail({ state, onClose, onSwitch }: { state: State; onCl
     };
   }, [isOpen, onClose]);
 
-  // open at the top — or at the screen that was clicked in a tour
+  // open at the top - or at the screen that was clicked in a tour
   useEffect(() => {
     if (!state) return;
     const t = window.setTimeout(() => {
@@ -140,7 +140,7 @@ export function ProjectDetail({ state, onClose, onSwitch }: { state: State; onCl
                       <figure className="overflow-hidden rounded-[12px] ring-1 ring-black/10">
                         <Image
                           src={previews[d.id].desktop}
-                          alt={`${d.name} — home page`}
+                          alt={`${d.name}, home page`}
                           placeholder="blur"
                           sizes="(min-width: 1024px) 62vw, 94vw"
                           className="block h-auto w-full"
@@ -156,7 +156,7 @@ export function ProjectDetail({ state, onClose, onSwitch }: { state: State; onCl
                           >
                             <Image
                               src={src}
-                              alt={`${d.name} — ${d.tour[i]}`}
+                              alt={`${d.name}: ${d.tour[i]}`}
                               placeholder="blur"
                               sizes="(min-width: 1024px) 31vw, (min-width: 640px) 46vw, 94vw"
                               className="block h-auto w-full"
@@ -189,7 +189,7 @@ export function ProjectDetail({ state, onClose, onSwitch }: { state: State; onCl
                       </div>
                       <div className="relative h-[72svh] bg-[#f4f4f4]">
                         {!loaded && <p className="hud absolute inset-0 grid place-items-center text-black/50">Loading the live site…</p>}
-                        <iframe title={`${d.name} — live website`} src={d.url} onLoad={() => setLoaded(true)} className="relative h-full w-full" />
+                        <iframe title={`${d.name} live website`} src={d.url} onLoad={() => setLoaded(true)} className="relative h-full w-full" />
                       </div>
                     </div>
                   )}
@@ -246,7 +246,7 @@ export function ProjectDetail({ state, onClose, onSwitch }: { state: State; onCl
                         className="hud flex h-12 items-center justify-between rounded-full border px-5 transition-opacity hover:opacity-70"
                         style={{ borderColor: `${d.scene.fg}44` }}
                       >
-                        Next project — {next.name} <span aria-hidden>→</span>
+                        Next project: {next.name} <span aria-hidden>→</span>
                       </button>
                     </div>
                   </div>

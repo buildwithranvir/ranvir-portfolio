@@ -15,11 +15,11 @@ const bloom: Record<string, { bg: string; ink: string }> = {
 };
 
 /**
- * Where to follow along — no boxes, just the marks themselves, floating.
+ * Where to follow along - no boxes, just the marks themselves, floating.
  * They drop in when the row arrives. With a mouse, a mark blooms into its brand
  * colour when pointed at, leans towards the pointer and its handle re-types.
  * On touch screens (no hover) they bloom on their own, one after another, as
- * the row comes into view — and a tap squeezes the mark and sends out a ripple.
+ * the row comes into view - and a tap squeezes the mark and sends out a ripple.
  */
 export function Socials() {
   const ref = useRef<HTMLUListElement>(null);

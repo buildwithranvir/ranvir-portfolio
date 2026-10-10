@@ -12,7 +12,7 @@ const no = (i: number) => String(i + 1).padStart(2, "0");
 /**
  * The index: every section of the page in two groups, set in the serif voice
  * with mono numbers. On larger screens a glass preview on the left shows what
- * you're pointing at — the real screenshot for a project, a title card for
+ * you're pointing at - the real screenshot for a project, a title card for
  * everything else.
  */
 export function IndexMenu({ current, onGo, onClose }: { current: number; onGo: (id: string) => void; onClose: () => void }) {
@@ -53,7 +53,7 @@ export function IndexMenu({ current, onGo, onClose }: { current: number; onGo: (
           {/* Left: title + preview */}
           <motion.div className="hidden flex-col self-start lg:sticky lg:top-6 lg:col-span-5 lg:flex" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: expo, delay: 0.05 }}>
             <h2 className="voice text-[clamp(2.7rem,4.5vw,4.14rem)] leading-none">Index</h2>
-            <p className="mt-3 max-w-[32ch] text-dust">Jump to any part of the page — or straight into one of the sites.</p>
+            <p className="mt-3 max-w-[32ch] text-dust">Jump to any part of the page, or straight into one of the sites.</p>
 
             <div className="glass mt-8 overflow-hidden rounded-2xl p-2">
               <div className="relative aspect-[16/10] overflow-hidden rounded-xl">

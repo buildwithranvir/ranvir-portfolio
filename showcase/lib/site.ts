@@ -1,6 +1,6 @@
 // ─────────────────────────────────────────────────────────────
 // Portfolio configuration. Name, contact details, bio, services, projects,
-// tools and demo URLs all live here — nothing else needs editing.
+// tools and demo URLs all live here - nothing else needs editing.
 //
 // Demo URLs come from environment variables so each deployed demo
 // can live at its own address (see README). Locally they default to
@@ -11,16 +11,16 @@ export const studio = {
   name: "Ranvir Kawatra",
   shortName: "Ranvir",
   role: "Creative web developer",
-  tagline: "Creative web developer, AI builder & content creator",
+  tagline: "Websites, apps and AI agents, designed and built end to end",
   description:
-    "Ranvir Kawatra is a creative web developer from Delhi, India. He designs and builds websites, apps, AI automations and AI agents for clients worldwide, and makes tech content on YouTube.",
+    "Ranvir Kawatra is a creative web developer in Delhi. He designs and builds websites, web apps, AI automations and AI agents for businesses around the world, and shows how the work is done on YouTube.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   /** Public email. Shown on Contact (leave empty to hide it everywhere). */
   email: "ranvirkawatra23@gmail.com",
   phone: "+91 85958 56713",
   phoneHref: "tel:+918595856713",
   whatsappHref: "https://wa.me/918595856713?text=Hi%20Ranvir%2C%20I%27d%20like%20to%20talk%20about%20a%20project.",
-  /** Where every "Let's talk" button goes — WhatsApp for now (swap for a mailto: or booking page any time). */
+  /** Where every "Let's talk" button goes - WhatsApp for now (swap for a mailto: or booking page any time). */
   contactHref:
     process.env.NEXT_PUBLIC_CONTACT_URL ?? "https://wa.me/918595856713?text=Hi%20Ranvir%2C%20I%27d%20like%20to%20talk%20about%20a%20project.",
   location: "Delhi, India",
@@ -38,26 +38,26 @@ export const about = {
   /** The portrait (public/ranvir.jpg, 4:5). Used on About, Contact, the closing card and the share preview. */
   photo: "/ranvir.jpg" as string | null,
   paragraphs: [
-    "I'm a creative web developer based in Delhi. I design and build websites that feel like the brands behind them, from the first sketch to the deployed site.",
-    "I also build AI agents and automations that take repetitive work off a team's plate, and I make content about all of it on YouTube.",
-    "I take on projects from clients around the world. Whatever the problem is, if it's tech, there's a good chance I can build it.",
+    "I'm a creative web developer in Delhi. Most projects start the same way: a business whose website no longer sounds like the business. I take it from the first sketch to the live site myself, so nothing gets lost between the idea and the code.",
+    "Over three years the work has grown past websites. I build the web apps teams open every morning, and the AI agents and automations that take repetitive work off their desks. On YouTube, I show how it's done.",
+    "I work with clients in India and abroad, over calls and WhatsApp. If the problem can be solved with technology, there's a good chance I can build the fix.",
   ],
-  /** Production notes shown beside the bio — facts only. */
+  /** Production notes shown beside the bio - facts only. */
   notes: [
     ["Role", "Creative web developer"],
     ["Based", "Delhi, India"],
     ["Clients", "Worldwide"],
     ["Practice", "3+ years"],
-    ["Also", "AI agents, automation & YouTube"],
+    ["Also", "AI agents, automation and YouTube"],
   ] as [string, string][],
 };
 
 export const services = [
-  { title: "Websites", body: "Custom, fast, responsive websites with their own design and motion. From a single landing page to a 30-page build." },
-  { title: "Web apps", body: "Dashboards, portals and tools built to be used every day. Clean interfaces on solid, maintainable code." },
-  { title: "AI automations", body: "Workflows that connect your tools and run on their own, so repetitive tasks stop eating your team's time." },
-  { title: "AI agents", body: "Agents that answer, research, qualify and act for you, wired into the systems you already use." },
-  { title: "Anything tech", body: "Got a technical problem that doesn't fit a box? Bring it. If it's tech, we'll figure out how to build it." },
+  { title: "Websites", body: "Sites with their own design and motion, built to load fast on any phone. From a single landing page to a 30-page build like RYS." },
+  { title: "Web apps", body: "Dashboards, portals and internal tools your team opens every morning. Clear screens on code that stays easy to change." },
+  { title: "AI automations", body: "Your tools, connected. Orders, leads and reports move on their own, so nobody spends the afternoon copying data between tabs." },
+  { title: "AI agents", body: "Agents that answer customers, research, qualify leads and take action inside the systems you already use." },
+  { title: "Anything tech", body: "Some problems don't fit a category. Describe yours, and we'll work out how to build the fix." },
 ];
 
 export type Project = {
@@ -74,21 +74,21 @@ export const projects: Project[] = [
     id: "rys",
     name: "RYS",
     kind: "30-page website",
-    summary: "The official website of Rajdhani Yuva Sansad, India's youth parliament initiative — 30 pages, designed and built from scratch.",
+    summary: "The official website of Rajdhani Yuva Sansad, India's youth parliament initiative. Thirty pages, designed and built from a blank page.",
     url: "https://www.rajdhaniyuvasansad.com/",
   },
   {
     id: "saunth",
     name: "SAUNTH",
     kind: "AI automation · Menu builder",
-    summary: "A menu builder for SAUNTH, with automation behind it to take repetitive work off the team.",
+    summary: "A menu builder for SAUNTH, with automation behind it that takes the repetitive updates off the team's hands.",
     url: "https://saunth-menu-builder.vercel.app/",
   },
   {
     id: "client-portfolio",
     name: "Scarlet by Priyanka",
     kind: "Portfolio website",
-    summary: "A portfolio for Priyanka Narula, a Delhi makeup artist — bridal, engagement, celebrity and party looks.",
+    summary: "A portfolio for Priyanka Narula, a makeup artist in Delhi, showing her bridal, engagement, celebrity and party work.",
     url: "https://scarlet-by-priyanka.vercel.app/",
   },
 ];
@@ -143,7 +143,7 @@ export const demos: Demo[] = [
     name: "NOIR",
     industry: "Café & bakery",
     description:
-      "A neighbourhood café told like a printed menu: a day-in-the-life photo essay, coffee bag labels, pencil notes, a live opening-hours badge and a booking slip.",
+      "A neighbourhood café told like its own printed menu. The day unfolds as a photo essay, with coffee bag labels, pencil notes, an opening-hours badge that is always current, and a booking slip at the end.",
     url: process.env.NEXT_PUBLIC_NOIR_URL ?? "http://localhost:3001",
     palette: ["#EFE7DA", "#22160F", "#43452A", "#6E1F25"],
     fonts: "Gloock, Familjen Grotesk & Reenie Beanie",
@@ -156,7 +156,7 @@ export const demos: Demo[] = [
     name: "VANTA",
     industry: "Fashion studio",
     description:
-      "An independent fashion label that opens with its people: a wordmark that stretches open, team portraits that develop as you scroll, a pinned founder's letter, a sideways campaign and a cursor-led shop.",
+      "An independent fashion label that introduces its people before its clothes. The wordmark stretches open, team portraits develop as you scroll, the founder's letter holds still while you read, the campaign runs sideways and the shop follows your cursor.",
     url: process.env.NEXT_PUBLIC_VANTA_URL ?? "http://localhost:3002",
     palette: ["#140F12", "#F2EEE7", "#2B1B26", "#D6F34B"],
     fonts: "Anybody, Bodoni Moda, Albert Sans & Martian Mono",
@@ -169,7 +169,7 @@ export const demos: Demo[] = [
     name: "ATELIER",
     industry: "Architecture practice",
     description:
-      "An architecture practice built like a folded card model: an accordion-screen intro, photos that unfold on their crease, an exploded axonometric of the process and a blueprint detail room.",
+      "An architecture practice presented like a folded card model. An accordion screen opens the site, photos unfold along their crease, an exploded axonometric explains the process, and a blueprint room holds the details.",
     url: process.env.NEXT_PUBLIC_ATELIER_URL ?? "http://localhost:3003",
     palette: ["#EEE6D8", "#17182B", "#2A47C2", "#D2532F", "#EBB13B", "#2E6B5E"],
     fonts: "Syne, Fraunces, Schibsted Grotesk & Azeret Mono",
@@ -182,7 +182,7 @@ export const demos: Demo[] = [
     name: "NOVA",
     industry: "Creative technology studio",
     description:
-      "A studio site built like an instrument: a cursor-reactive dot field, a project index with a live viewer, a 12-week mission-control timeline and a brief written like a small program.",
+      "A creative technology studio built like an instrument. A dot field reacts to your cursor, the project index plays in a live viewer, a 12-week mission-control timeline shows how the work runs, and the brief reads like a small program.",
     url: process.env.NEXT_PUBLIC_NOVA_URL ?? "http://localhost:3004",
     palette: ["#0B0C0E", "#E9EDF1", "#8C949E", "#FF5A1F"],
     fonts: "Bricolage Grotesque & JetBrains Mono",
@@ -191,17 +191,17 @@ export const demos: Demo[] = [
 ];
 
 export const principles = [
-  { title: "Original design", body: "Every brand gets its own typography, grid and motion language. No recycled layouts, no generic templates." },
-  { title: "Premium interactions", body: "Animation that guides attention and feels considered, and always respects reduced-motion settings." },
-  { title: "Performance", body: "Optimised images, lean JavaScript and static rendering, so sites feel instant on any connection." },
-  { title: "Responsive development", body: "Layouts composed separately for phone, tablet and desktop, not simply squeezed to fit." },
-  { title: "Automation where it helps", body: "AI agents and workflows that save real hours, built to be simple enough that your team actually uses them." },
-  { title: "Business-focused", body: "Clear calls to action, working forms and content that's easy to update, built to bring in customers." },
+  { title: "Original design", body: "Every brand gets its own type, grid and motion. Nothing comes from a template, so the site looks like the business and nobody else." },
+  { title: "Motion with a purpose", body: "Animation points the eye to what matters, and it steps aside for anyone whose device asks for reduced motion." },
+  { title: "Speed", body: "Compressed images, lean JavaScript and pages rendered ahead of time, so the site opens fast on a patchy mobile connection." },
+  { title: "Made for every screen", body: "Phone, tablet and desktop each get a layout of their own. Nothing is simply shrunk to fit." },
+  { title: "Automation where it helps", body: "AI agents and workflows that save real hours, and simple enough that your team keeps using them after launch." },
+  { title: "Built to bring in business", body: "Clear calls to action, forms that actually reach you, and content you can update yourself." },
 ];
 
-/** The page's sections, in order — drives the HUD, the index menu and every section number. */
+/** The page's sections, in order - drives the HUD, the index menu and every section number. */
 export const scenes = [
-  { id: "top", title: "Intro", blurb: "Name, role and selected work at a glance" },
+  { id: "top", title: "Intro", blurb: "Name, role and selected work" },
   { id: "about", title: "About", blurb: "Who I am and where I work from" },
   { id: "craft", title: "Services", blurb: "Websites, apps, AI automations and agents" },
   { id: "work", title: "Selected work", blurb: "Every site side by side" },
@@ -209,10 +209,10 @@ export const scenes = [
   { id: "vanta", title: "VANTA", blurb: "Fashion studio" },
   { id: "atelier", title: "ATELIER", blurb: "Architecture practice" },
   { id: "nova", title: "NOVA", blurb: "Creative technology studio" },
-  { id: "offscreen", title: "Client work", blurb: "Projects built for real clients" },
+  { id: "offscreen", title: "Client work", blurb: "Live projects for real clients" },
   { id: "kit", title: "Toolkit", blurb: "The tools behind the work" },
   { id: "method", title: "Process", blurb: "Six principles I build by" },
-  { id: "contact", title: "Contact", blurb: "Start a project — WhatsApp or call" },
+  { id: "contact", title: "Contact", blurb: "Start a project on WhatsApp or by phone" },
 ] as const;
 
 export type SceneId = (typeof scenes)[number]["id"];

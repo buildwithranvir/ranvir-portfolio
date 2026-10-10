@@ -45,7 +45,7 @@ const nextFrame = () => new Promise<void>((r) => requestAnimationFrame(() => req
 /**
  * Switches the lighting from the lamp at (x, y): the new light floods out of the
  * bulb until it fills the screen, the page changes underneath it, and then the
- * flood dissolves to show the page in its new lighting — like film exposing.
+ * flood dissolves to show the page in its new lighting - like film exposing.
  * Only a transform and an opacity move, so it stays smooth on phones. The flood
  * sits just under the top bar, so the lamp stays in view as the source.
  */
@@ -88,7 +88,7 @@ export function switchTheme(x: number, y: number): Promise<void> {
       .call(() => {
         // the screen is covered: change the lighting, and hold for a beat of full light while the
         // page repaints underneath (phones need a little longer), then dissolve
-        // (colour transitions are held off for the swap — hundreds of buttons fading their colours at once would stutter)
+        // (colour transitions are held off for the swap - hundreds of buttons fading their colours at once would stutter)
         tl.pause();
         html.classList.add("theme-swap");
         apply(next);

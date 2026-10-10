@@ -1,6 +1,6 @@
 // Brand marks for the social links (24×24 paths). Instagram, YouTube and GitHub come from
 // Simple Icons (CC0); LinkedIn is drawn here (Simple Icons no longer ships it).
-// Generated once — no runtime dependency.
+// Generated once - no runtime dependency.
 export type Brand = { path: string; color: string };
 
 export const brands: Record<string, Brand> = {

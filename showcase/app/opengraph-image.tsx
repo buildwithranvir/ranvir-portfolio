@@ -3,7 +3,7 @@ import path from "node:path";
 import { ImageResponse } from "next/og";
 import { studio } from "@/lib/site";
 
-export const alt = `${studio.name} — ${studio.tagline}`;
+export const alt = `${studio.name}: ${studio.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -27,7 +27,7 @@ export default async function OpengraphImage() {
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 20, letterSpacing: 3, color: "#a39a8d" }}>
-        <span>SC 01 — TITLE</span>
+        <span>SC 01 · TITLE</span>
         <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <span style={{ width: 12, height: 12, borderRadius: 12, background: "#ff3d2e" }} />
           REC

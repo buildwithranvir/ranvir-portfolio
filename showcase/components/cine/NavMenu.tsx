@@ -13,7 +13,7 @@ const toolCount = tools.reduce((n, g) => n + g.items.length, 0);
 
 // the quick jumps: a section id, a label, a line about it, and which scenes count as "here"
 const rows = [
-  { id: "top", label: "Home", note: "The title", match: ["top"] },
+  { id: "top", label: "Home", note: "Start here", match: ["top"] },
   { id: "about", label: "About", note: "Who I am", match: ["about"] },
   { id: "craft", label: "Services", note: "What I make", match: ["craft"] },
   { id: "work", label: "Work", note: "Every site, its own world", match: ["work", "noir", "vanta", "atelier", "nova"] },
@@ -23,7 +23,7 @@ const rows = [
   { id: "contact", label: "Contact", note: "Start a project", match: ["contact"] },
 ];
 
-/** Delhi's time, ticking — mounted only while the card is open. */
+/** Delhi's time, ticking - mounted only while the card is open. */
 function DelhiTime() {
   const [now, setNow] = useState(() => new Date());
   useEffect(() => {
@@ -35,7 +35,7 @@ function DelhiTime() {
 
 /**
  * The top-left of the site: Ranvir's name as a pill (his photo, name, chevron)
- * that opens a small ID card — jump to any section, reach him in one tap
+ * that opens a small ID card - jump to any section, reach him in one tap
  * (WhatsApp, call, copy email), follow him, or replay the intro.
  */
 export function NavMenu({ current, onGo, onIndex }: { current: string; onGo: (id: string) => void; onIndex: () => void }) {
@@ -80,7 +80,7 @@ export function NavMenu({ current, onGo, onIndex }: { current: string; onGo: (id
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls="nav-card"
-        aria-label={`${studio.name} — menu`}
+        aria-label={`Menu: ${studio.name}`}
         className="chrome-part glass glass-blur pointer-events-auto group flex h-11 items-center gap-2.5 rounded-full py-1 pl-1 pr-3.5 text-tungsten transition-colors hover:text-amber"
       >
         {about.photo && (

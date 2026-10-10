@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
-/* ─── RANVIR KAWATRA — "a film in eleven scenes" ──────────────────
+/* ─── RANVIR KAWATRA - "a film in eleven scenes" ──────────────────
    The projection room: warm near-black, tungsten light, one REC red.
    Light "paper" scenes give the film its moments of stillness.
    Type: Archivo (stretchable credits), Newsreader italic (the voice),
@@ -211,7 +211,7 @@
   --grain: var(--grain-ink);
 }
 
-/* daylight: every section is a coloured print — pastel grounds, brighter blobs, ink grain */
+/* daylight: every section is a coloured print - pastel grounds, brighter blobs, ink grain */
 :root[data-theme="light"] {
   --grain-glow: var(--grain-ink);
   --pastel-sky: #dce8f6;
@@ -364,7 +364,7 @@
   }
 }
 
-/* ─── Glass: used sparingly — navigation, controls, info cards ──
+/* ─── Glass: used sparingly - navigation, controls, info cards ──
    The frosted look comes from layered translucent fills. A live backdrop blur
    is re-rendered on every scroll frame, so it is opt-in (.glass-blur), only on
    a few small fixed pieces, and only on mouse-driven screens. */
@@ -698,7 +698,7 @@ html.marks-live .mk:not(.is-on) path {
   }
 }
 
-/* while the lighting swaps (under the flood), nothing eases its colours — only the lamp itself */
+/* while the lighting swaps (under the flood), nothing eases its colours - only the lamp itself */
 html.theme-swap :not(.lamp-bulb, .lamp-rays, .lamp-beam, .lamp-tip) {
   transition: none !important;
 }

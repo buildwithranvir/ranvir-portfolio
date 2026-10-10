@@ -60,7 +60,7 @@ function FilmFrame() {
 }
 
 /**
- * Section 02 — about. A light, still page after the dark opening:
+ * Section 02 - about. A light, still page after the dark opening:
  * an editorial spread with a large statement, a single frame of film,
  * the bio, and production notes (facts only).
  */
@@ -114,7 +114,7 @@ export function About() {
     <section ref={ref} id="about" aria-labelledby="about-title" className="wash tone-peach relative bg-paper py-20 text-ink md:py-28">
       <div className="frame">
         <div className="hud flex justify-between border-b border-ink/15 pb-4 text-smoke">
-          <span>{sceneNo("about")} — About</span>
+          <span>{sceneNo("about")} · About</span>
           <span>Delhi · Worldwide</span>
         </div>
 
@@ -126,7 +126,7 @@ export function About() {
           <Mark kind="box" tone="sun">
             <span className="credit not-italic [--w:105]">websites</span>
           </Mark>
-          , apps and <span className="credit not-italic text-rec [--w:105]">AI agents</span> — from Delhi, for anyone, anywhere.
+          , apps and <span className="credit not-italic text-rec [--w:105]">AI agents</span>. From Delhi, for clients anywhere.
         </p>
 
         <div className="mt-14 grid grid-cols-1 gap-12 md:mt-20 md:grid-cols-12 md:gap-8">

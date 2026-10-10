@@ -3,7 +3,7 @@ import type { CSSProperties, ReactNode } from "react";
 // hand-drawn strokes, each a single pencil line, drawn in a 100-wide box (heights vary)
 export const marks = {
   under: { box: [100, 10], d: "M1 6.5 C 18 3.6, 40 8.2, 60 5.2 S 88 3.6, 99 5.8" },
-  // two passes, the second a little looser — the way you underline something twice
+  // two passes, the second a little looser - the way you underline something twice
   double: { box: [100, 14], d: "M1 5 C 22 2.6, 48 7, 70 4.4 S 92 3.4, 99 4.6 M6 11 C 30 8.6, 58 12.4, 96 9.6" },
   circle: { box: [100, 40], d: "M54 3.5 C 24 2, 3 9, 4 21 C 5 33, 34 38.5, 60 37 C 84 35.6, 98 28, 96 17 C 94 7, 72 1.6, 38 5" },
   box: { box: [100, 20], d: "M2 11 C 28 9.5, 62 12, 98 10" },

@@ -8,7 +8,7 @@ import { afterIntro } from "@/lib/intro";
 /**
  * Re-draws a mark's stroke in the pixel size its word actually has, so the
  * pencil line is never stretched: an even line weight, and a path length the
- * draw-in can trace exactly (a stretched path traces short — the ring stopped
+ * draw-in can trace exactly (a stretched path traces short - the ring stopped
  * part of the way round). Sizes are read without the page's own transforms
  * (a mark inside a scaling headline still gets its real size).
  */
@@ -33,7 +33,7 @@ function fit(mk: HTMLElement) {
 }
 
 /**
- * Draws every pencil mark (.mk) the first time it scrolls into view — the
+ * Draws every pencil mark (.mk) the first time it scrolls into view - the
  * hero's once the intro has landed. The boot script hides the strokes
  * (html.marks-live) only when motion is allowed, so with reduced motion they
  * are simply there.

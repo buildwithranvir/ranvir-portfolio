@@ -6,16 +6,16 @@ import { Flip, gsap, MOTION_OK, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { Mark } from "@/components/ui/Mark";
 
 const notes: Record<string, string> = {
-  Web: "Websites and web apps — from the first layout to the last animation.",
+  Web: "Websites and web apps, from the first layout to the last animation.",
   "Apps & data": "Mobile apps, databases, payments and the back ends behind them.",
   "AI & automation": "Agents and workflows that connect your tools and take repetitive work away.",
-  Design: "Designing the experience before a single line of code.",
+  Design: "Working out the experience before writing a line of code.",
   Delivery: "Shipping it fast, findable, tested and easy to look after.",
   Content: "Making the YouTube videos that show how it's all built.",
 };
 
 // one colour per discipline, like the families of a periodic table
-// (theme variables: bright in the dark, deeper inks in daylight — see globals.css)
+// (theme variables: bright in the dark, deeper inks in daylight - see globals.css)
 const hues: Record<string, string> = {
   Web: "var(--k-web)",
   "Apps & data": "var(--k-apps)",
@@ -229,7 +229,7 @@ export function Kit() {
       <div className="frame relative">
         <div className="kit-head grid grid-cols-1 gap-8 text-center lg:grid-cols-12 lg:items-end lg:text-left">
           <div className="lg:col-span-6">
-            <p className="hud text-dust">{sceneNo("kit")} — Toolkit</p>
+            <p className="hud text-dust">{sceneNo("kit")} · Toolkit</p>
             <h2 id="kit-title" className="credit mt-4 text-[clamp(1.98rem,3.96vw,3.6rem)] [--w:80]">
               What I build{" "}
               <span className="voice normal-case text-amber">
@@ -320,7 +320,7 @@ export function Kit() {
               <li key={e.name} data-flip-id={e.name} className="pt-tile">
                 <button
                   type="button"
-                  aria-label={`${e.name} — ${e.group}`}
+                  aria-label={`${e.name}, ${e.group}`}
                   aria-pressed={here}
                   onPointerEnter={(ev) => ev.pointerType === "mouse" && setActive(e)}
                   onFocus={() => setActive(e)}

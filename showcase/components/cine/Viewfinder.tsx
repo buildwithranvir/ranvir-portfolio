@@ -9,7 +9,7 @@ const PAD = 14;
 /**
  * The signature of the site: a focus frame that travels with the visitor.
  * Four corner brackets glide to whatever the current scene frames
- * ([data-frame] — the name, then each project, then the closing button), and
+ * ([data-frame] - the name, then each project, then the closing button), and
  * pull tight around anything marked [data-frame-hover] while it's hovered.
  * Corners move with transforms only; positions are read once per frame,
  * before anything is written.

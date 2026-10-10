@@ -10,7 +10,7 @@ function Holes() {
 }
 
 /**
- * Scene 03 — the craft. What Ranvir makes, printed frame by frame on a strip
+ * Scene 03 - the craft. What Ranvir makes, printed frame by frame on a strip
  * of film. On larger screens the frames are dealt onto the table as you arrive
  * and each one lights up as it crosses the middle of the screen; on phones it
  * is a strip you swipe.
@@ -70,7 +70,7 @@ export function Craft() {
       <div className="flex flex-col py-20 md:py-28">
         <div className="cr-head frame mb-10 flex flex-col items-center gap-4 text-center md:flex-row md:items-end md:justify-between md:text-left lg:mb-14">
           <div>
-            <p className="hud text-dust">{sceneNo("craft")} — Services</p>
+            <p className="hud text-dust">{sceneNo("craft")} · Services</p>
             <h2 id="craft-title" className="credit mt-4 text-[clamp(1.98rem,min(3.96vw,7.2vh),3.6rem)] [--w:80]">
               What I{" "}
               <span className="voice normal-case text-amber [font-variation-settings:normal]">
@@ -81,7 +81,7 @@ export function Craft() {
             </h2>
           </div>
           <p className="voice max-w-[30ch] text-[1.15rem] leading-snug text-dust">
-            One person for the whole build — design, code, and the automation behind it.
+            One person for the whole build: the design, the code and the automation behind it.
           </p>
         </div>
 

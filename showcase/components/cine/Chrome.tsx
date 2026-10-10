@@ -27,7 +27,7 @@ export function Chrome() {
 
   useGSAP(
     () => {
-      // which section is on screen — created once every section (and its pin spacing) exists
+      // which section is on screen - created once every section (and its pin spacing) exists
       const triggers: ScrollTrigger[] = [];
       const id = window.setTimeout(() => {
         scenes.forEach((s, i) => {

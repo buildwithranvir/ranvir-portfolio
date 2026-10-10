@@ -13,7 +13,7 @@ const lines: Line[] = [
   ...(studio.email ? [{ k: "Email", code: "MAIL", v: studio.email, href: `mailto:${studio.email}`, action: "Copy", copy: true }] : []),
 ];
 
-// a line only ever breaks between words or just before the "@" — never mid-word
+// a line only ever breaks between words or just before the "@" - never mid-word
 const groups = (v: string) =>
   v.split(" ").flatMap((w, i, all) => {
     const parts = w.split(/(?=@)/);

@@ -12,7 +12,7 @@ import { Method } from "@/components/scenes/Method";
 import { Offscreen } from "@/components/scenes/Offscreen";
 import { Projects } from "@/components/scenes/Projects";
 
-/** Ranvir Kawatra — portfolio. */
+/** Ranvir Kawatra - portfolio. */
 export default function Home() {
   return (
     <>

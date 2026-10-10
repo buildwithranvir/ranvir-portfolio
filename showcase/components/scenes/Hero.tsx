@@ -160,8 +160,8 @@ function Letters({ text, className }: { text: string; className: string }) {
 }
 
 /**
- * Scene 01 — the title. The name is the set: huge, split across the frame,
- * and it pulls focus like a lens — letters near the pointer sharpen and
+ * Scene 01 - the title. The name is the set: huge, split across the frame,
+ * and it pulls focus like a lens - letters near the pointer sharpen and
  * widen, the rest soften. On touch screens the focus sweeps across on its own.
  */
 export function Hero() {
@@ -268,7 +268,7 @@ export function Hero() {
 
       <div className="frame flex flex-1 flex-col pb-20 pt-24 md:pb-24 md:pt-28">
         <div className="hero-in hud grid grid-cols-2 gap-2 text-dust md:grid-cols-4">
-          <span>{sceneNo("top")} — Intro</span>
+          <span>{sceneNo("top")} · Intro</span>
           <span className="text-right md:text-left">Delhi · 28.61° N 77.21° E</span>
           <span className="hidden md:block">{studio.role}</span>
           <span className="hidden text-right md:block">{studio.reach}</span>
@@ -282,11 +282,11 @@ export function Hero() {
 
         <div className="mt-8 grid grid-cols-1 gap-8 md:mt-12 lg:grid-cols-12 lg:items-end">
           <p className="hero-in voice mx-auto max-w-[26ch] text-center text-[clamp(1.17rem,1.71vw,1.67rem)] leading-[1.18] lg:col-span-6 lg:mx-0 lg:max-w-none lg:text-left">
-            A creative web developer building <span className="text-amber">websites, apps</span> and{" "}
+            I design and build <span className="text-amber">websites, apps</span> and{" "}
             <Mark kind="circle" tone="coral">
               <span className="text-amber">AI agents</span>
             </Mark>{" "}
-            — for clients anywhere in the world.
+            for businesses anywhere in the world.
           </p>
           <div className="flex flex-col items-center gap-6 lg:col-span-5 lg:col-start-8 lg:items-end">
             <div className="hero-in flex flex-wrap justify-center gap-3">

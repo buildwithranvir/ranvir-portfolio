@@ -1,12 +1,25 @@
-# Showcase — Ranvir Kawatra's portfolio ("a film in eleven scenes")
+# Ranvir Kawatra · Portfolio
 
-Ranvir Kawatra's portfolio. Everything you'd change is in `lib/site.ts`: name, contact details, bio, services, projects, tools, socials and the demo cards.
+The portfolio of Ranvir Kawatra, a creative web developer in Delhi. Live at **https://buildwithranvir.vercel.app**.
+
+It is a single page told like a short film: an opening title sequence, the services, four concept sites shown in their own colours, live client work, the toolkit, the process and a contact section that builds a WhatsApp message for you.
+
+## Run it
 
 ```bash
 npm install
 npm run dev      # http://localhost:3000
 ```
 
-Demo links default to `http://localhost:3001`–`3004`. In production, set the URLs through environment variables. Copy `.env.example` to `.env.local`, or add them in your host's dashboard.
+## Where things live
 
-Preview images in `public/previews/` are real screenshots. Re-capture them with `node ../scripts/capture-previews.mjs` after changing a demo.
+- `lib/site.ts`: every piece of copy and data (contact details, bio, services, client projects, tools, concept sites, section names). Edit this first.
+- `components/scenes/`: one file per section of the page.
+- `components/cine/`: the frame around the page (intro film, top bar, menus, light switch).
+- `app/globals.css`: colours for both lighting modes, the section washes and the pencil marks.
+
+The concept-site links come from environment variables (`NEXT_PUBLIC_NOIR_URL` and the rest, see `.env.example`). Locally they default to ports 3001 to 3004.
+
+## Deploying
+
+Pushing to `main` deploys to Vercel automatically (Root Directory: `showcase`). Preview images in `public/previews/` are real screenshots; re-capture them with `node ../scripts/capture-previews.mjs` after changing a concept site.
