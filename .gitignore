@@ -19,3 +19,7 @@ Thumbs.db
 # media projects kept out of the code repo (hundreds of MB of renders)
 videos/
 final-video/
+
+# local editor notes
+CLAUDE.md
+AGENTS.md
