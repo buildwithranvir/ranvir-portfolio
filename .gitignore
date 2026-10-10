@@ -1,0 +1,21 @@
+# dependencies and builds
+node_modules/
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts
+
+# local config and secrets
+.vercel
+.env*
+!.env.example
+
+# logs and OS files
+*.log
+.DS_Store
+Thumbs.db
+
+# media projects kept out of the code repo (hundreds of MB of renders)
+videos/
+final-video/

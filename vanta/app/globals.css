@@ -1,0 +1,272 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+/* ─── VANTA — "Acid Atelier" ───────────────────────────────────────
+   Aubergine-black ink, porcelain, a deep plum and one chartreuse
+   highlighter. The page colour itself moves: each section declares a
+   theme and the background crossfades as you scroll into it.
+   Type: Anybody (variable width 50–150 — squeezes and stretches),
+   Bodoni Moda italic (accent words), Albert Sans (reading),
+   Martian Mono (labels). */
+@theme {
+  --color-ink: #140f12;
+  --color-plum: #2b1b26;
+  --color-porcelain: #f2eee7;
+  --color-bone: #e3dcd0;
+  --color-smoke: #8e858a;
+  --color-acid: #d6f34b;
+  --color-rouge: #e5412d;
+
+
+  --font-display: var(--font-anybody), "Arial Narrow", sans-serif;
+  --font-serif: var(--font-bodoni), "Didot", serif;
+  --font-sans: var(--font-albert), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-martian), ui-monospace, monospace;
+
+  --ease-snap: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Theme colours read the live --bg/--fg wherever they're used ("inline"), so each
+   [data-theme] section and the nav can carry their own palette. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+}
+
+:root {
+  --bg: #140f12;
+  --fg: #f2eee7;
+}
+
+/* Page palette. <PageMotion> sets html[data-page] once per section change (an instant
+   switch, never animated frame by frame) while the colour layers behind the page cross-fade.
+   Without JS (no .bg-live) each section simply paints its own colours. */
+:root[data-page="plum"] {
+  --bg: #2b1b26;
+}
+:root[data-page="light"] {
+  --bg: #f2eee7;
+  --fg: #140f12;
+}
+:root[data-page="acid"] {
+  --bg: #d6f34b;
+  --fg: #140f12;
+}
+html:not(.bg-live) [data-theme] {
+  color: var(--fg);
+  background: var(--bg);
+}
+html:not(.bg-live) [data-theme="dark"] {
+  --bg: #140f12;
+  --fg: #f2eee7;
+}
+html:not(.bg-live) [data-theme="plum"] {
+  --bg: #2b1b26;
+  --fg: #f2eee7;
+}
+html:not(.bg-live) [data-theme="light"] {
+  --bg: #f2eee7;
+  --fg: #140f12;
+}
+html:not(.bg-live) [data-theme="acid"] {
+  --bg: #d6f34b;
+  --fg: #140f12;
+}
+
+@layer base {
+  html {
+    background: var(--color-ink);
+    color: var(--fg);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--fg);
+    overflow-x: clip;
+  }
+
+
+  ::selection {
+    background: var(--color-acid);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-acid);
+    outline-offset: 3px;
+  }
+
+  [id] {
+    scroll-margin-top: 5rem;
+  }
+}
+
+@layer components {
+  /* Display: Anybody with a controllable width. Set --w (50–150) per element. */
+  .display {
+    font-family: var(--font-display);
+    font-variation-settings: "wdth" var(--w, 100);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 0.86;
+    text-transform: uppercase;
+  }
+  /* Split letters re-read --w so each can stretch on its own */
+  .display :where(*) {
+    font-variation-settings: "wdth" var(--w, 100);
+  }
+
+  /* Accent words: high-contrast Bodoni italic, only ever used large */
+  .serif-i {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+    font-variation-settings: "opsz" 96;
+    text-transform: none;
+    letter-spacing: -0.01em;
+  }
+
+  /* Labels and metadata */
+  .mono {
+    font-family: var(--font-mono);
+    font-variation-settings: "wdth" 88;
+    font-size: 0.6875rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 1520px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .wrap {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Highlighter: a soft rounded block of chartreuse sweeps in behind the
+     words (once .is-on is added), and the text turns ink so it reads on it. */
+  .hl {
+    color: inherit;
+    padding: 0.02em 0.2em 0.06em;
+    margin-inline: -0.05em;
+    border-radius: 0.3em;
+    background-image: linear-gradient(var(--color-acid), var(--color-acid));
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 0% 100%;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    transition:
+      background-size 850ms var(--ease-out-expo),
+      color 300ms ease 220ms;
+  }
+  .hl.is-on {
+    background-size: 100% 100%;
+    color: var(--color-ink);
+  }
+
+  /* House photo grade: slightly muted, deeper blacks */
+  .grade {
+    filter: saturate(0.7) contrast(1.06);
+  }
+  .mono-grade {
+    filter: grayscale(1) contrast(1.08);
+    transition: filter 900ms var(--ease-out-expo);
+  }
+  .group:hover .mono-grade,
+  .group:focus-visible .mono-grade,
+  .is-colour .mono-grade {
+    filter: grayscale(0) contrast(1);
+  }
+
+  /* Smoked glass */
+  .glass {
+    background: color-mix(in srgb, var(--color-ink) 38%, transparent);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    backdrop-filter: blur(16px) saturate(1.4);
+    border: 1px solid color-mix(in srgb, white 14%, transparent);
+  }
+  .glass-light {
+    background: color-mix(in srgb, var(--color-porcelain) 55%, transparent);
+    -webkit-backdrop-filter: blur(16px) saturate(1.3);
+    backdrop-filter: blur(16px) saturate(1.3);
+    border: 1px solid color-mix(in srgb, white 50%, transparent);
+  }
+
+  /* Underline that draws on hover */
+  .draw-link {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: background-size 500ms var(--ease-out-expo);
+  }
+  .draw-link:hover,
+  .group:hover .draw-link {
+    background-size: 100% 1px;
+  }
+}
+
+/* Page colour layers: only opacity changes, so the cross-fade stays on the GPU */
+.page-bg > div {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 600ms cubic-bezier(0.45, 0, 0.2, 1);
+}
+.page-bg > div.is-on {
+  opacity: 1;
+}
+
+/* Rotating badge */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* If scripts never run, the opening sequence still gets out of the way */
+@keyframes intro-fallback {
+  to {
+    visibility: hidden;
+  }
+}
+.intro {
+  animation: intro-fallback 0s 5s forwards;
+}
+
+.cursor-ui {
+  display: none;
+}
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .cursor-ui {
+    display: block;
+  }
+}
+
+.split-line-mask {
+  padding-block: 0.1em;
+  margin-block: -0.1em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    display: none;
+  }
+  .hl {
+    background-size: 100% 100%;
+    color: var(--color-ink);
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

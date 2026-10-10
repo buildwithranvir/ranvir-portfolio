@@ -1,0 +1,732 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+/* ─── RANVIR KAWATRA — "a film in eleven scenes" ──────────────────
+   The projection room: warm near-black, tungsten light, one REC red.
+   Light "paper" scenes give the film its moments of stillness.
+   Type: Archivo (stretchable credits), Newsreader italic (the voice),
+   IBM Plex Mono (the camera HUD). */
+@theme {
+  --color-void: #0b0a09;
+  --color-reel: #151210;
+  --color-tungsten: #f1e8d8;
+  --color-dust: #a39a8d;
+  --color-paper: #ece4d4;
+  --color-paper-2: #e2d8c5;
+  --color-ink: #14110e;
+  --color-smoke: #5f574c;
+  --color-rec: #ff3d2e;
+  --color-amber: #ffb45a;
+  --color-card: #14110f; /* menus and cards that sit above the page */
+  --color-go: #5bd17a; /* "open", "copied", WhatsApp */
+
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-mono: var(--font-plex), ui-monospace, monospace;
+
+  --ease-cine: cubic-bezier(0.7, 0, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Two lightings, one film ──────────────────────────────────────
+   Dark ("house lights down") is the projection room above. Light ("house
+   lights up") is the same set in daylight: warm ivory and charcoal, an iris
+   accent, a deep coral for REC, and pastel gels (peach, mint, lilac, butter)
+   on the quiet "paper" scenes.
+   Every themed value is a variable. `.stay-dark` pins a subtree to the dark
+   values: the opening film, the film strips, the client sites' own worlds. */
+:root,
+.stay-dark {
+  --glow-a: 255 180 90; /* the projector's light */
+  --glow-b: 255 61 46; /* the REC light */
+  --glow-c: 255 140 70;
+  --shade: 0 0 0; /* shadows: colour channels and strength */
+  --shade-k: 1;
+  --line: 241 232 216; /* hairlines on the page */
+  --glass-a: rgb(36 31 27 / 0.86);
+  --glass-b: rgb(16 14 12 / 0.8);
+  --glass-blur-a: rgb(36 31 27 / 0.62);
+  --glass-blur-b: rgb(16 14 12 / 0.52);
+  --glass-edge: rgb(241 232 216 / 0.12);
+  --glass-hi: rgb(255 255 255 / 0.07);
+  --read-bg: linear-gradient(160deg, #26201c, #131110);
+  --bubble: #1f3b2c;
+  --bubble-ink: #e9f5ec;
+  --gh-bg: #f0f6fc;
+  --gh-ink: #0d1117;
+  /* the toolkit's families */
+  --k-web: #ffb45a;
+  --k-apps: #5fd4c0;
+  --k-ai: #ff6b52;
+  --k-design: #c79bff;
+  --k-delivery: #7fb0ff;
+  --k-content: #a3e07a;
+}
+.stay-dark {
+  color-scheme: dark;
+  color: var(--color-tungsten);
+  --color-void: #0b0a09;
+  --color-reel: #151210;
+  --color-tungsten: #f1e8d8;
+  --color-dust: #a39a8d;
+  --color-paper: #ece4d4;
+  --color-paper-2: #e2d8c5;
+  --color-ink: #14110e;
+  --color-smoke: #5f574c;
+  --color-rec: #ff3d2e;
+  --color-amber: #ffb45a;
+  --color-card: #14110f;
+  --color-go: #5bd17a;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-void: #f6f1e9; /* warm ivory */
+  --color-reel: #eee7dc; /* a deeper cream */
+  --color-card: #fffbf5; /* raised surfaces */
+  --color-tungsten: #231d27; /* charcoal with a little plum */
+  --color-dust: #665d6b;
+  --color-ink: #231d27;
+  --color-smoke: #5a5160;
+  --color-amber: #5b45c2; /* iris: the primary accent */
+  --color-rec: #b5392b; /* deep coral: the secondary */
+  --color-go: #1a6f40;
+  --color-paper: #f8e4d6;
+  --color-paper-2: #e8e2f5;
+  /* the pastel gels */
+  --pastel-peach: #f8e4d6;
+  --pastel-mint: #e0eee3;
+  --pastel-lilac: #e8e2f5;
+  --pastel-butter: #f6ecd0;
+  --glow-a: 160 136 236; /* lilac light */
+  --glow-b: 240 140 120; /* blush */
+  --glow-c: 250 186 140; /* peach */
+  --shade: 70 48 92;
+  --shade-k: 0.34;
+  --line: 35 29 39;
+  --glass-a: rgb(255 253 249 / 0.9);
+  --glass-b: rgb(250 245 238 / 0.84);
+  --glass-blur-a: rgb(255 253 249 / 0.7);
+  --glass-blur-b: rgb(250 245 238 / 0.6);
+  --glass-edge: rgb(35 29 39 / 0.1);
+  --glass-hi: rgb(255 255 255 / 0.9);
+  --read-bg: linear-gradient(160deg, #fffdf9, #f7f1e8);
+  --bubble: #d7efdd;
+  --bubble-ink: #10301c;
+  --gh-bg: #181717;
+  --gh-ink: #fff;
+  --k-web: #a4560f;
+  --k-apps: #0f7469;
+  --k-ai: #c2412d;
+  --k-design: #7a4bc9;
+  --k-delivery: #2f5fc0;
+  --k-content: #3d7a22;
+}
+/* ─── Pencil marks: the inks (bright on the dark, deeper on paper) ── */
+:root,
+.stay-dark {
+  --mk-coral: #ff6b52;
+  --mk-blue: #7fb0ff;
+  --mk-teal: #5fd4c0;
+  --mk-pink: #ff86c0;
+  --mk-violet: #c79bff;
+  --mk-sun: rgb(255 180 90 / 0.3); /* a highlighter: soft in the dark so the word stays readable */
+}
+:root[data-theme="light"] {
+  --mk-coral: #e2502f;
+  --mk-blue: #3654d6;
+  --mk-teal: #0c9a82;
+  --mk-pink: #d93d8b;
+  --mk-violet: #6c48d8;
+  --mk-sun: rgb(255 210 60 / 0.72);
+}
+/* the paper-type sections in the dark are light, so their marks take the deeper inks too */
+:root:not([data-theme="light"]) :is(.tone-peach, .tone-mint, .tone-lilac, .tone-butter) {
+  --mk-coral: #d9472b;
+  --mk-blue: #3654d6;
+  --mk-teal: #0c9a82;
+  --mk-pink: #d93d8b;
+  --mk-violet: #6c48d8;
+  --mk-sun: rgb(255 196 60 / 0.6);
+}
+
+/* ─── Section colour: each section gets its own textured wash ──────
+   A wash is a few soft blobs of pastel colour plus a fine printed grain,
+   baked into the section's background (painted once; nothing animates). */
+:root {
+  --grain-ink: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.16  0 0 0 0 0.12  0 0 0 0 0.18  0 0 0 0.16 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --grain-glow: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.88  0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --grid-ink: linear-gradient(rgb(54 84 214 / 0.07) 1px, transparent 1px), linear-gradient(90deg, rgb(54 84 214 / 0.07) 1px, transparent 1px);
+}
+/* (every --blobs is exactly three layers, so the sizes below line up: three full-size washes, then the tiled grain) */
+.wash {
+  --blobs: linear-gradient(transparent, transparent), linear-gradient(transparent, transparent), linear-gradient(transparent, transparent);
+  background-image: var(--blobs), var(--grain, var(--grain-glow));
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    220px 220px;
+}
+/* graph paper, for the toolkit's table */
+.graph {
+  background-image: var(--grid-ink);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+}
+:root:not([data-theme="light"]) .graph {
+  --grid-ink: linear-gradient(rgb(127 176 255 / 0.05) 1px, transparent 1px), linear-gradient(90deg, rgb(127 176 255 / 0.05) 1px, transparent 1px);
+}
+
+/* the dark: deep, low washes of colour */
+.tone-hero {
+  --blobs: radial-gradient(45% 40% at 12% 88%, rgb(120 80 200 / 0.1), transparent 70%), linear-gradient(transparent, transparent), linear-gradient(transparent, transparent);
+}
+.tone-sky {
+  --blobs: radial-gradient(50% 45% at 90% 10%, rgb(70 110 220 / 0.12), transparent 70%), radial-gradient(40% 40% at 5% 95%, rgb(160 90 220 / 0.08), transparent 70%), linear-gradient(transparent, transparent);
+}
+.tone-cream {
+  --blobs: radial-gradient(45% 35% at 8% 18%, rgb(160 100 230 / 0.09), transparent 70%), radial-gradient(40% 30% at 95% 92%, rgb(40 170 150 / 0.07), transparent 70%), linear-gradient(transparent, transparent);
+}
+.tone-fog {
+  --blobs: radial-gradient(40% 30% at 95% 85%, rgb(40 170 150 / 0.08), transparent 70%), radial-gradient(35% 25% at 5% 70%, rgb(70 110 220 / 0.07), transparent 70%), linear-gradient(transparent, transparent);
+}
+.tone-blush {
+  --blobs: radial-gradient(45% 30% at 10% 35%, rgb(255 90 140 / 0.08), transparent 70%), radial-gradient(40% 25% at 92% 60%, rgb(120 80 200 / 0.08), transparent 70%), linear-gradient(transparent, transparent);
+}
+/* the paper scenes in the dark: printed paper, with a breath of colour */
+.tone-peach {
+  --grain: var(--grain-ink);
+  --blobs: radial-gradient(40% 40% at 95% 8%, rgb(255 170 120 / 0.28), transparent 70%), radial-gradient(35% 35% at 4% 96%, rgb(255 200 120 / 0.22), transparent 70%), linear-gradient(transparent, transparent);
+}
+.tone-mint {
+  --grain: var(--grain-ink);
+  --blobs: radial-gradient(40% 45% at 96% 90%, rgb(120 200 160 / 0.22), transparent 70%), radial-gradient(30% 35% at 3% 6%, rgb(255 210 120 / 0.2), transparent 70%), linear-gradient(transparent, transparent);
+}
+.tone-lilac {
+  --grain: var(--grain-ink);
+  --blobs: radial-gradient(40% 40% at 4% 92%, rgb(180 150 240 / 0.22), transparent 70%), radial-gradient(35% 30% at 96% 6%, rgb(255 160 190 / 0.18), transparent 70%), linear-gradient(transparent, transparent);
+}
+.tone-butter {
+  --grain: var(--grain-ink);
+}
+
+/* daylight: every section is a coloured print — pastel grounds, brighter blobs, ink grain */
+:root[data-theme="light"] {
+  --grain-glow: var(--grain-ink);
+  --pastel-sky: #dce8f6;
+  --pastel-blush: #f8e0e2;
+  --pastel-fog: #e7eaee;
+}
+:root[data-theme="light"] .tone-hero {
+  --blobs: radial-gradient(48% 42% at 88% 12%, rgb(205 190 250 / 0.85), transparent 72%), radial-gradient(42% 40% at 6% 92%, rgb(252 206 178 / 0.8), transparent 72%),
+    radial-gradient(30% 28% at 52% 58%, rgb(255 232 160 / 0.4), transparent 72%);
+}
+:root[data-theme="light"] .tone-sky {
+  --color-reel: var(--pastel-sky);
+  --blobs: radial-gradient(45% 40% at 92% 8%, rgb(196 182 248 / 0.75), transparent 72%), radial-gradient(40% 40% at 4% 96%, rgb(170 228 214 / 0.6), transparent 72%), linear-gradient(transparent, transparent);
+}
+:root[data-theme="light"] .tone-cream {
+  --blobs: radial-gradient(42% 30% at 6% 14%, rgb(255 226 150 / 0.55), transparent 72%), radial-gradient(40% 28% at 96% 94%, rgb(196 222 250 / 0.7), transparent 72%), linear-gradient(transparent, transparent);
+}
+:root[data-theme="light"] .tone-fog {
+  --color-void: var(--pastel-fog);
+  --blobs: radial-gradient(40% 25% at 96% 88%, rgb(180 232 214 / 0.65), transparent 72%), radial-gradient(35% 20% at 4% 80%, rgb(205 196 250 / 0.55), transparent 72%), linear-gradient(transparent, transparent);
+}
+:root[data-theme="light"] .tone-blush {
+  --color-void: var(--pastel-blush);
+  --blobs: radial-gradient(45% 25% at 8% 30%, rgb(255 196 160 / 0.7), transparent 72%), radial-gradient(40% 22% at 94% 55%, rgb(214 200 250 / 0.75), transparent 72%), linear-gradient(transparent, transparent);
+}
+:root[data-theme="light"] .tone-peach {
+  --blobs: radial-gradient(42% 40% at 96% 6%, rgb(255 190 196 / 0.8), transparent 72%), radial-gradient(38% 36% at 3% 96%, rgb(255 226 150 / 0.7), transparent 72%), linear-gradient(transparent, transparent);
+}
+:root[data-theme="light"] .tone-mint {
+  --blobs: radial-gradient(42% 45% at 96% 92%, rgb(160 222 238 / 0.7), transparent 72%), radial-gradient(32% 38% at 3% 5%, rgb(255 232 160 / 0.6), transparent 72%), linear-gradient(transparent, transparent);
+}
+:root[data-theme="light"] .tone-lilac {
+  --blobs: radial-gradient(42% 42% at 3% 94%, rgb(255 196 220 / 0.7), transparent 72%), radial-gradient(36% 32% at 97% 5%, rgb(196 222 250 / 0.75), transparent 72%), linear-gradient(transparent, transparent);
+}
+:root[data-theme="light"] .tone-butter {
+  --blobs: radial-gradient(40% 40% at 10% 10%, rgb(255 200 180 / 0.6), transparent 72%), radial-gradient(40% 40% at 90% 90%, rgb(190 230 210 / 0.6), transparent 72%), linear-gradient(transparent, transparent);
+}
+
+/* the quiet scenes each take their own gel in daylight */
+:root[data-theme="light"] .tone-peach {
+  --color-paper: var(--pastel-peach);
+}
+:root[data-theme="light"] .tone-mint {
+  --color-paper: var(--pastel-mint);
+}
+:root[data-theme="light"] .tone-lilac {
+  --color-paper-2: var(--pastel-lilac);
+}
+:root[data-theme="light"] .tone-butter {
+  --color-paper: var(--pastel-butter);
+}
+
+@layer base {
+  html {
+    /* laptops and up read one notch smaller: every rem-based size and gap follows */
+    font-size: 100%;
+    background: var(--color-void);
+    color: var(--color-tungsten);
+    color-scheme: dark;
+  }
+  html[data-theme="light"] {
+    color-scheme: light;
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: 93.75%;
+    }
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.55;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-rec);
+    color: var(--color-void);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-rec);
+    outline-offset: 3px;
+  }
+
+  [id] {
+    scroll-margin-top: 4.5rem;
+  }
+}
+
+@layer components {
+  .frame {
+    width: 100%;
+    max-width: 1560px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .frame {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Film-credit display: Archivo, heavy, stretchable through --w */
+  .credit {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-variation-settings: "wdth" var(--w, 100);
+    letter-spacing: -0.02em;
+    line-height: 0.86;
+    text-transform: uppercase;
+  }
+  .credit :where(*) {
+    font-variation-settings: "wdth" var(--w, 100);
+  }
+
+  /* The voice */
+  .voice {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  /* Camera HUD / annotations */
+  .hud {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  /* Sprocket holes for film strips */
+  .sprockets {
+    background-image: linear-gradient(90deg, transparent 0 10px, rgb(241 232 216 / 0.16) 10px 24px, transparent 24px 36px);
+    background-size: 36px 100%;
+  }
+
+  .link-draw {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0% 1px no-repeat;
+    transition: background-size 0.6s var(--ease-cine);
+  }
+  .link-draw:hover,
+  .link-draw:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+/* ─── Glass: used sparingly — navigation, controls, info cards ──
+   The frosted look comes from layered translucent fills. A live backdrop blur
+   is re-rendered on every scroll frame, so it is opt-in (.glass-blur), only on
+   a few small fixed pieces, and only on mouse-driven screens. */
+.glass {
+  background: linear-gradient(160deg, var(--glass-a), var(--glass-b));
+  border: 1px solid var(--glass-edge);
+  box-shadow:
+    inset 0 1px 0 var(--glass-hi),
+    0 12px 32px -14px rgb(var(--shade) / calc(0.55 * var(--shade-k)));
+}
+.glass-light {
+  background: linear-gradient(160deg, rgb(252 249 243 / 0.92), rgb(240 233 222 / 0.86));
+  border: 1px solid rgb(20 17 14 / 0.08);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.6),
+    0 16px 36px -18px rgb(20 17 14 / 0.35);
+}
+@media (pointer: fine) {
+  .glass-blur {
+    background: linear-gradient(160deg, var(--glass-blur-a), var(--glass-blur-b));
+    -webkit-backdrop-filter: blur(10px) saturate(1.3);
+    backdrop-filter: blur(10px) saturate(1.3);
+  }
+}
+
+/* ─── Screenshot tours: a slow, endless strip (paused on hover) ── */
+@keyframes tour-roll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.tour-track {
+  animation: tour-roll var(--tour-speed, 70s) linear infinite;
+}
+.tour:not(.is-on) .tour-track,
+.tour:hover .tour-track,
+.tour:focus-within .tour-track {
+  animation-play-state: paused;
+}
+
+/* ─── Film grain: one tiny noise tile, shifted in steps (no repaint of the page) ── */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.075;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain 0.9s steps(6) infinite;
+  will-change: transform;
+}
+/* in daylight the grain is the paper's tooth: dark specks, barely there */
+:root[data-theme="light"] .grain {
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.14  0 0 0 0 0.11  0 0 0 0 0.15  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -4%); }
+  60% { transform: translate(-4%, -2%); }
+  80% { transform: translate(3%, 3%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ─── Rack focus on the hero name: --f is 1 (in focus) … ~0.4 (soft) ── */
+.focus-name .ch {
+  font-variation-settings: "wdth" calc(var(--w, 110) - (1 - var(--f, 1)) * 16);
+  filter: blur(calc((1 - var(--f, 1)) * 5px));
+  opacity: calc(0.32 + var(--f, 1) * 0.68);
+}
+.focus-name.focus-live .ch {
+  transition:
+    filter 0.5s ease-out,
+    opacity 0.5s ease-out,
+    font-variation-settings 0.5s ease-out;
+}
+
+/* ─── Opening titles: only when scripted, and only once per session ── */
+.intro {
+  display: none;
+}
+html.js:not(.intro-seen) .intro {
+  display: block;
+}
+
+/* The phone turning, on the intro's "turn your phone" cards */
+@keyframes turn-side {
+  0%, 18% { transform: rotate(0deg); }
+  45%, 78% { transform: rotate(-90deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes turn-up {
+  0%, 18% { transform: rotate(-90deg); }
+  45%, 78% { transform: rotate(0deg); }
+  100% { transform: rotate(-90deg); }
+}
+.turn-side { animation: turn-side 2.4s cubic-bezier(0.7, 0, 0.2, 1) infinite; }
+/* tips one way, back, then the other way: "either way works" */
+@keyframes turn-either {
+  0%, 10% { transform: rotate(0deg); }
+  25%, 38% { transform: rotate(-90deg); }
+  50%, 60% { transform: rotate(0deg); }
+  75%, 88% { transform: rotate(90deg); }
+  100% { transform: rotate(0deg); }
+}
+.turn-either { animation: turn-either 3.6s cubic-bezier(0.7, 0, 0.2, 1) infinite; }
+.turn-up { animation: turn-up 2.4s cubic-bezier(0.7, 0, 0.2, 1) infinite; }
+
+/* ─── Toolkit: the periodic table's tiles ── */
+.pt-cell {
+  border-color: rgb(241 232 216 / 0.09);
+  background: linear-gradient(160deg, rgb(255 255 255 / 0.035), rgb(255 255 255 / 0.01));
+  transition:
+    transform 0.35s var(--ease-out-expo),
+    border-color 0.3s,
+    background-color 0.3s,
+    box-shadow 0.35s,
+    opacity 0.5s;
+}
+.pt-cell:hover,
+.pt-cell:focus-visible,
+.pt-cell.is-here {
+  border-color: var(--hue);
+  background-color: color-mix(in srgb, var(--hue) 12%, transparent);
+  box-shadow: 0 10px 26px -12px color-mix(in srgb, var(--hue) 70%, transparent);
+}
+/* daylight: each tile is printed in its family's colour */
+:root[data-theme="light"] .pt-cell {
+  border-color: color-mix(in srgb, var(--hue) 20%, transparent);
+  background: color-mix(in srgb, var(--hue) 6%, #fffdf9);
+}
+:root[data-theme="light"] .pt-cell:hover,
+:root[data-theme="light"] .pt-cell:focus-visible,
+:root[data-theme="light"] .pt-cell.is-here {
+  border-color: var(--hue);
+  background: color-mix(in srgb, var(--hue) 13%, #fffdf9);
+  box-shadow: 0 10px 22px -12px color-mix(in srgb, var(--hue) 55%, transparent);
+}
+@media (pointer: fine) {
+  .pt-cell:hover {
+    transform: translateY(-4px) scale(1.08);
+    z-index: 2;
+  }
+}
+
+/* ─── Contact board: split-flap characters ── */
+.flap {
+  display: inline-grid;
+  place-items: center;
+  min-width: 0.8em;
+  height: 1.4em;
+  padding: 0 0.07em;
+  border-radius: 0.14em;
+  line-height: 1;
+  /* a physical board: it stays dark in either lighting */
+  color: #f1e8d8;
+  background: linear-gradient(180deg, #2b2520 0 48%, #0c0a09 48% 52%, #1d1916 52% 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.07),
+    0 3px 6px -2px rgb(0 0 0 / 0.6);
+  backface-visibility: hidden;
+  transition: color 0.3s;
+}
+.flap-space {
+  min-width: 0.35em;
+  background: none;
+  box-shadow: none;
+}
+.bd-row:hover .flap {
+  color: #ffb45a;
+}
+:root[data-theme="light"] .flap {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.07),
+    0 3px 6px -3px rgb(70 48 92 / 0.45);
+}
+
+/* ─── Contact: the social marks bob gently ── */
+@keyframes so-float {
+  from { transform: translateY(-6px); }
+  to { transform: translateY(6px); }
+}
+.so-float {
+  animation: so-float 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes rec-blink {
+  50% { opacity: 0.25; }
+}
+.rec-blink {
+  animation: rec-blink 1.2s steps(1) infinite;
+}
+
+@keyframes credits-roll {
+  to { transform: translateY(-50%); }
+}
+
+/* ─── Services in daylight: each film frame is lit through its own gel ── */
+:root[data-theme="light"] .cr-frame:nth-child(6n + 1) { --gel: 201 184 255; }
+:root[data-theme="light"] .cr-frame:nth-child(6n + 2) { --gel: 255 196 163; }
+:root[data-theme="light"] .cr-frame:nth-child(6n + 3) { --gel: 168 230 196; }
+:root[data-theme="light"] .cr-frame:nth-child(6n + 4) { --gel: 169 205 245; }
+:root[data-theme="light"] .cr-frame:nth-child(6n + 5) { --gel: 246 180 196; }
+:root[data-theme="light"] .cr-frame:nth-child(6n + 6) { --gel: 245 220 138; }
+:root[data-theme="light"] .cr-frame {
+  --glow-a: var(--gel);
+  --color-amber: rgb(var(--gel));
+}
+
+/* ─── The house lights: the switch that hangs from the top of the screen ── */
+.lamp-bulb {
+  fill: transparent;
+  stroke: currentColor;
+  transition:
+    fill 0.4s,
+    stroke 0.4s;
+}
+.lamp-rays {
+  opacity: 0;
+  transform: scale(0.6);
+  transform-origin: 50% 0;
+  transition:
+    opacity 0.4s,
+    transform 0.5s var(--ease-out-expo);
+}
+.lamp-beam {
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+@media (pointer: fine) {
+  .lamp:hover .lamp-bulb {
+    fill: rgb(255 180 90 / 0.45);
+  }
+}
+:root[data-theme="light"] .lamp-bulb {
+  fill: #ffcf5a;
+  stroke: #c98a12;
+}
+:root[data-theme="light"] .lamp-rays {
+  opacity: 1;
+  transform: none;
+}
+:root[data-theme="light"] .lamp-beam {
+  opacity: 1;
+}
+.lamp-tip {
+  opacity: 0;
+  transform: translate(-50%, -4px);
+  transition:
+    opacity 0.3s,
+    transform 0.4s var(--ease-out-expo);
+}
+.lamp:focus-visible .lamp-tip,
+.lamp-tip.is-on {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+@media (pointer: fine) {
+  .lamp:hover .lamp-tip {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* ─── Hand-drawn marks around key words ──
+   The word is always fully visible; only the pencil stroke draws in, along its
+   own path (so a ring goes round the word), the first time it scrolls into view. */
+.mk {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  isolation: isolate;
+}
+.mk svg {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  overflow: visible;
+  fill: none;
+  stroke: var(--mk);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.4px;
+}
+.mk path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.15s cubic-bezier(0.6, 0, 0.3, 1);
+}
+html.marks-live .mk:not(.is-on) path {
+  stroke-dashoffset: 1;
+}
+.mk-under svg {
+  left: -3%;
+  bottom: -0.14em;
+  width: 106%;
+  height: 0.32em;
+}
+.mk-double svg {
+  left: -2%;
+  bottom: -0.3em;
+  width: 104%;
+  height: 0.42em;
+}
+/* a ring needs room: it keeps clear of the words either side */
+.mk-circle {
+  margin-inline: 0.22em;
+}
+.mk-circle svg {
+  left: -0.24em;
+  top: -18%;
+  width: calc(100% + 0.48em);
+  height: 136%;
+}
+.mk-box svg {
+  z-index: -1;
+  left: 0.02em;
+  top: 0;
+  width: calc(100% + 0.08em);
+  height: 100%;
+}
+/* a highlighter band about as tall as lowercase letters */
+.mk-box path {
+  stroke-width: 0.62em;
+  transition-duration: 0.8s;
+}
+@media (max-width: 767px) {
+  .mk svg {
+    stroke-width: 2px;
+  }
+}
+
+/* while the lighting swaps (under the flood), nothing eases its colours — only the lamp itself */
+html.theme-swap :not(.lamp-bulb, .lamp-rays, .lamp-beam, .lamp-tip) {
+  transition: none !important;
+}
+
+/* Touch screens: keep the motion, drop the costliest paint work */
+@media (pointer: coarse) {
+  .grain {
+    animation: none;
+  }
+  .focus-name .ch {
+    filter: none;
+    font-variation-settings: "wdth" var(--w, 110);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js:not(.intro-seen) .intro {
+    display: none;
+  }
+  .grain {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

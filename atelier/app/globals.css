@@ -1,0 +1,242 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+/* ─── ATELIER — tokens ────────────────────────────────────────────
+   "Folded model": the site is built like a card model of a building.
+   Plaster and paper grounds, blueprint ink, and the material colours of a
+   sample board: terracotta, ochre, verdigris and a plaster blush.
+   Type: Syne (display), Fraunces italic (emphasis), Schibsted Grotesk
+   (reading), Azeret Mono (annotations). */
+@theme {
+  --color-plaster: #eee6d8;
+  --color-paper: #f8f4ec;
+  --color-ink: #17182b;
+  --color-cobalt: #2a47c2;
+  --color-blueprint: #1b2c78;
+  --color-terracotta: #d2532f;
+  --color-rust: #b5401f;
+  --color-ochre: #ebb13b;
+  --color-verdigris: #2e6b5e;
+  --color-blush: #f0cdbf;
+
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-azeret), ui-monospace, monospace;
+
+  --ease-fold: cubic-bezier(0.7, 0, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    background: var(--color-plaster);
+    color: var(--color-ink);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-ochre);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-cobalt);
+    outline-offset: 3px;
+  }
+
+  [id] {
+    scroll-margin-top: 5rem;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 400;
+  }
+}
+
+@layer components {
+  .sheet {
+    width: 100%;
+    max-width: 1480px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .sheet {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Display: Syne at full weight is also at full width */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 0.92;
+  }
+
+  /* Emphasis: soft, slightly wonky Fraunces italic */
+  .serif {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  }
+
+  /* Drawing annotation */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  /* ── Hand-drawn marks around key words ─────────────────────────
+     The word is always fully visible; only the pencil stroke is drawn. */
+  .mk {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .mk svg {
+    position: absolute;
+    pointer-events: none;
+    overflow: visible;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  /* The stroke is revealed with a pencil-speed wipe (left to right) */
+  .mk svg {
+    clip-path: inset(-30% -6% -30% -6%);
+    transition: clip-path 1.1s var(--ease-fold);
+  }
+  html.marks-live .mk:not(.is-on) svg {
+    clip-path: inset(-30% 106% -30% -6%);
+  }
+  .mk-under svg {
+    left: -3%;
+    bottom: -0.12em;
+    width: 106%;
+    height: 0.32em;
+  }
+  .mk-circle svg {
+    left: -9%;
+    top: -14%;
+    width: 118%;
+    height: 128%;
+  }
+  .mk-box {
+    isolation: isolate;
+  }
+  .mk-box svg {
+    z-index: -1;
+    left: -0.1em;
+    top: 0;
+    width: calc(100% + 0.2em);
+    height: 100%;
+  }
+  /* a highlighter band about as tall as lowercase letters, with round ends that stay round */
+  .mk-box path {
+    stroke-width: 0.8em;
+    stroke-linecap: round;
+  }
+
+  /* The folding half of a FoldImage: hover transition only once it has unfolded,
+     so it never fights the GSAP tween */
+  .fold-leaf.is-ready {
+    transition: transform 0.7s var(--ease-out-expo);
+  }
+
+  /* 3D folding */
+  .fold-stage {
+    perspective: 1400px;
+  }
+  .preserve {
+    transform-style: preserve-3d;
+  }
+  .no-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Blueprint ground: a faint 1:100 grid */
+  .blueprint {
+    background-color: var(--color-blueprint);
+    background-image:
+      linear-gradient(rgb(248 244 236 / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(248 244 236 / 0.07) 1px, transparent 1px),
+      linear-gradient(rgb(248 244 236 / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(248 244 236 / 0.035) 1px, transparent 1px);
+    background-size:
+      96px 96px,
+      96px 96px,
+      24px 24px,
+      24px 24px;
+  }
+
+  /* Folded-paper creases, used as a texture on coloured grounds */
+  .creases {
+    background-image:
+      linear-gradient(115deg, transparent 49.8%, rgb(23 24 43 / 0.07) 50%, transparent 50.2%),
+      linear-gradient(65deg, transparent 49.8%, rgb(255 255 255 / 0.12) 50%, transparent 50.2%);
+    background-size: 340px 340px;
+  }
+
+  /* Gentle architectural grade */
+  .grade {
+    filter: saturate(0.88) contrast(1.03);
+  }
+
+  /* Draw-in underline for text links */
+  .draw-link {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0% 1px no-repeat;
+    transition: background-size 0.6s var(--ease-fold);
+  }
+  .draw-link:hover,
+  .draw-link:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+/* The intro only exists when JavaScript runs and motion is welcome */
+.intro {
+  display: none;
+}
+html.js .intro {
+  display: block;
+}
+
+/* Drafting crosshair (fine pointers only, mounted by JS) */
+.crosshair {
+  mix-blend-mode: difference;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .intro {
+    display: none;
+  }
+  html.marks-live .mk:not(.is-on) svg {
+    clip-path: inset(-30% -6% -30% -6%);
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

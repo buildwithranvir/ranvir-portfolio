@@ -1,0 +1,279 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+/* ─── NOIR — tokens ───────────────────────────────────────────────
+   Milk paper, espresso ink, deep olive and a burgundy pencil.
+   Type: Gloock (display), Familjen Grotesk (text), Reenie Beanie (notes). */
+@theme {
+  --color-paper: #efe7da;
+  --color-paper-2: #e5d9c6;
+  --color-milk: #f7f2e9;
+  --color-ink: #22160f;
+  --color-ink-soft: #5b4b3f;
+  --color-olive: #43452a;
+  --color-olive-soft: #6d6e48;
+  --color-burgundy: #6e1f25;
+  --color-oat: #cdb995;
+
+  --font-display: var(--font-gloock), Georgia, serif;
+  --font-sans: var(--font-familjen), ui-sans-serif, system-ui, sans-serif;
+  --font-hand: var(--font-reenie), "Comic Sans MS", cursive;
+
+  --ease-slow: cubic-bezier(0.45, 0.05, 0.25, 1);
+}
+
+@layer base {
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    background: var(--color-paper);
+    overflow-x: clip;
+  }
+
+  /* Paper grain over the whole page — subtle, never on top of controls */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.07;
+    transform: translateZ(0);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .22 0 0 0 0 .15 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::selection {
+    background: var(--color-burgundy);
+    color: var(--color-milk);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-burgundy);
+    outline-offset: 3px;
+  }
+
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .wrap {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Small-caps label used for metadata, captions and the masthead */
+  .label {
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* Handwritten pencil note */
+  .note {
+    font-family: var(--font-hand);
+    color: var(--color-burgundy);
+    font-size: 1.55rem;
+    line-height: 1.05;
+  }
+
+  /* Warm frosted glass — only for things that float over photography */
+  .glass {
+    background: color-mix(in srgb, var(--color-milk) 62%, transparent);
+    -webkit-backdrop-filter: blur(16px) saturate(1.25);
+    backdrop-filter: blur(16px) saturate(1.25);
+    border: 1px solid color-mix(in srgb, white 55%, transparent);
+    box-shadow:
+      0 1px 0 0 color-mix(in srgb, white 60%, transparent) inset,
+      0 18px 40px -24px rgb(34 22 15 / 0.45);
+  }
+
+  /* Darker frost for the olive, ink and burgundy sections */
+  .glass-dark {
+    background: color-mix(in srgb, var(--color-ink) 38%, transparent);
+    -webkit-backdrop-filter: blur(18px) saturate(1.3);
+    backdrop-filter: blur(18px) saturate(1.3);
+    border: 1px solid color-mix(in srgb, white 16%, transparent);
+    box-shadow:
+      0 1px 0 0 color-mix(in srgb, white 14%, transparent) inset,
+      0 22px 44px -26px rgb(0 0 0 / 0.6);
+  }
+
+  /* Framed photograph: soft corners, a hairline edge and a slow hover drift */
+  .photo {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    background: var(--color-paper-2);
+    box-shadow: 0 0 0 1px rgb(34 22 15 / 0.06), 0 18px 36px -28px rgb(34 22 15 / 0.45);
+    isolation: isolate;
+  }
+  .photo img {
+    transition: transform 1.4s var(--ease-slow);
+  }
+  @media (hover: hover) {
+    .photo:hover img {
+      transform: scale(1.045);
+    }
+  }
+
+  /* A link that underlines itself like a pencil stroke */
+  .ink-link {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+    transition: background-size 700ms var(--ease-slow);
+    padding-bottom: 2px;
+  }
+  .ink-link:hover {
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+  }
+
+  /* Dotted rule used in the printed menu and on the receipt */
+  .dots {
+    flex: 1;
+    min-width: 1rem;
+    border-bottom: 1.5px dotted color-mix(in srgb, currentColor 35%, transparent);
+    transform: translateY(-0.32em);
+  }
+}
+
+/* If scripts never run, the opening curtain still gets out of the way. */
+@keyframes intro-fallback {
+  to {
+    visibility: hidden;
+  }
+}
+.intro {
+  animation: intro-fallback 0s 4s forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    display: none;
+  }
+}
+
+.cursor-ui {
+  display: none;
+}
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .cursor-ui {
+    display: block;
+  }
+}
+
+/* Warm, out-of-focus light that sits behind glass so the frost has something to catch */
+.glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.3;
+}
+@media (min-width: 768px) {
+  .glow {
+    opacity: 0.55;
+  }
+}
+
+/* Primary pill button with a round arrow that slides on hover */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 3rem;
+  padding-inline: 1.5rem 0.375rem;
+  border-radius: 9999px;
+  background: var(--color-ink);
+  color: var(--color-milk);
+  font-size: 0.9375rem;
+  transition: background-color 500ms var(--ease-slow);
+}
+.btn:hover {
+  background: var(--color-burgundy);
+}
+.btn-arrow {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background: var(--color-milk);
+  color: var(--color-ink);
+  overflow: hidden;
+}
+.btn-arrow > span {
+  transition: transform 500ms var(--ease-slow);
+}
+.btn:hover .btn-arrow > span {
+  transform: translateX(150%);
+  animation: arrow-loop 500ms var(--ease-slow) 250ms both;
+}
+@keyframes arrow-loop {
+  from {
+    transform: translateX(-150%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes noir-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  animation: noir-marquee 48s linear infinite;
+}
+
+@keyframes noir-steam {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(-1deg);
+  }
+}
+.float-soft {
+  animation: noir-steam 6s ease-in-out infinite;
+}
+
+.split-line-mask {
+  padding-block: 0.12em;
+  margin-block: -0.12em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
