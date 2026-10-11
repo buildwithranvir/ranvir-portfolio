@@ -118,7 +118,8 @@ export function WorkCarousel({ onOpen }: { onOpen: (p: Project) => void }) {
               aria-selected={i === active}
               aria-label={p.name}
               onClick={() => go(i)}
-              className={`h-1.5 rounded-full transition-all duration-500 ease-snap ${i === active ? "w-8 bg-signal" : "w-1.5 bg-white/25"}`}
+              // the dot stays small; padding (clipped from the paint) makes it a comfortable tap target
+              className={`-mx-1.5 -my-3 box-content h-1.5 rounded-full bg-clip-content px-1.5 py-3 transition-all duration-500 ease-snap ${i === active ? "w-8 bg-signal" : "w-1.5 bg-white/25"}`}
             />
           ))}
         </div>

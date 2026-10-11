@@ -209,6 +209,17 @@
   .draw-link:focus-visible {
     background-size: 100% 1px;
   }
+  /* touch screens: a bigger invisible tap area around small text links (looks and layout unchanged) */
+  @media (pointer: coarse) {
+    .draw-link {
+      position: relative;
+    }
+    .draw-link::after {
+      content: "";
+      position: absolute;
+      inset: -10px -4px;
+    }
+  }
 }
 
 /* The intro only exists when JavaScript runs and motion is welcome */

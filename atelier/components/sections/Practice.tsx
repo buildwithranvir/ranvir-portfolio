@@ -44,7 +44,7 @@ export function Practice() {
   );
 
   return (
-    <section ref={ref} id="practice" aria-labelledby="practice-title" className="relative bg-plaster py-24 md:py-32">
+    <section ref={ref} id="practice" aria-labelledby="practice-title" className="relative overflow-x-clip bg-plaster py-24 md:py-32">
       <Seam className="fill-plaster" />
       <div className="sheet">
         <div className="grid gap-8 lg:grid-cols-12">

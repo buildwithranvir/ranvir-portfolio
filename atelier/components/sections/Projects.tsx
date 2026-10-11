@@ -109,7 +109,7 @@ export function Projects() {
                 <tr key={p.id} className="sched-row group cursor-pointer border-t border-ink/15 transition-colors duration-300 hover:bg-ink hover:text-paper" onClick={() => setOpen(i)}>
                   <td className="label py-4 pl-1 align-middle text-rust transition-colors group-hover:text-ochre">{p.no}</td>
                   <td className="py-4 align-middle">
-                    <button type="button" onClick={(e) => { e.stopPropagation(); setOpen(i); }} className="display text-left text-[1.15rem] tracking-[-0.02em] md:text-[1.35rem]" aria-label={`Open project sheet: ${p.name}`}>
+                    <button type="button" onClick={(e) => { e.stopPropagation(); setOpen(i); }} className="display -my-2 py-2 text-left text-[1.15rem] tracking-[-0.02em] md:text-[1.35rem]" aria-label={`Open project sheet: ${p.name}`}>
                       {p.name}
                     </button>
                   </td>

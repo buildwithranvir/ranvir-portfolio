@@ -44,7 +44,7 @@ export function Nav() {
     >
       <div className="wrap">
         <nav aria-label="Main" className="glass flex h-14 items-center justify-between gap-4 rounded-[14px] pl-4 pr-2 md:pl-5">
-          <AnchorLink href="#top" onClick={() => setOpen(false)} className="flex items-baseline gap-2.5" aria-label="NOIR, back to top">
+          <AnchorLink href="#top" onClick={() => setOpen(false)} className="-my-2 flex items-baseline gap-2.5 py-2" aria-label="NOIR, back to top">
             <span className="font-display text-[1.35rem] leading-none tracking-[0.02em]">Noir</span>
             <span className="label hidden text-[0.625rem] text-ink-soft sm:inline">Kaffebar &amp; Bageri</span>
           </AnchorLink>

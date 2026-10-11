@@ -32,7 +32,7 @@ export function Nav() {
     <header className="fixed inset-x-0 top-3 z-50">
       <div className="frame flex items-start justify-between gap-3">
         <nav aria-label="Main" className="glass flex h-12 items-center gap-1 rounded-xl pl-4 pr-1.5">
-          <AnchorLink href="#top" onClick={() => setOpen(false)} className="mr-3 flex items-center gap-2 font-bold tracking-[-0.03em]" aria-label="NOVA, back to top">
+          <AnchorLink href="#top" onClick={() => setOpen(false)} className="-my-2 mr-3 flex items-center gap-2 py-2 font-bold tracking-[-0.03em]" aria-label="NOVA, back to top">
             <span aria-hidden className="grid h-4 w-4 grid-cols-2 gap-[2px]">
               <span className="bg-signal" />
               <span className="bg-ice" />

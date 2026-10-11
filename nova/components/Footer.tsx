@@ -62,31 +62,31 @@ export function Footer() {
     <footer ref={ref} className="relative overflow-hidden border-t border-white/10 bg-graphite">
       <div className="frame mono flex flex-col gap-6 py-6 text-mist lg:flex-row lg:items-center lg:justify-between">
         <nav aria-label="Footer">
-          <ul className="flex flex-wrap gap-x-5 gap-y-2">
+          <ul className="flex flex-wrap gap-x-5">
             {nav.map((l) => (
               <li key={l.href}>
-                <AnchorLink href={l.href} className="hover:text-signal">
+                <AnchorLink href={l.href} className="inline-block py-2 hover:text-signal">
                   {l.label.toLowerCase()}
                 </AnchorLink>
               </li>
             ))}
             <li>
-              <AnchorLink href="#top" className="hover:text-signal">
+              <AnchorLink href="#top" className="inline-block py-2 hover:text-signal">
                 top ↑
               </AnchorLink>
             </li>
           </ul>
         </nav>
-        <ul className="flex flex-wrap gap-x-5 gap-y-2">
+        <ul className="flex flex-wrap gap-x-5">
           {site.socials.map((s) => (
             <li key={s.label}>
-              <a href={s.href} target="_blank" rel="noreferrer" className="hover:text-signal">
+              <a href={s.href} target="_blank" rel="noreferrer" className="inline-block py-2 hover:text-signal">
                 {s.label.toLowerCase()} ↗
               </a>
             </li>
           ))}
           <li>
-            <a href={`mailto:${site.email}`} className="text-ice hover:text-signal">
+            <a href={`mailto:${site.email}`} className="inline-block py-2 text-ice hover:text-signal">
               {site.email}
             </a>
           </li>
