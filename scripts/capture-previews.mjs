@@ -10,9 +10,9 @@ import { fileURLToPath } from "node:url";
 
 const out = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../showcase/public/previews");
 const demos = [
-  { name: "noir", port: 3001, section: "#menu", offset: -40 },
-  { name: "vanta", port: 3002, section: "#shop", offset: 40 },
-  { name: "atelier", port: 3003, section: "#projects", offset: 380 },
+  { name: "noir", port: 3001, section: "#menu", offset: -60 },
+  { name: "vanta", port: 3002, section: "#edit", offset: 120 },
+  { name: "atelier", port: 3003, section: "#details", offset: 0 },
   { name: "nova", port: 3004, section: "#work", offset: 140 },
 ];
 
