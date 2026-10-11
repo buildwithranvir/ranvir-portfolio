@@ -32,7 +32,7 @@ Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, GSAP 3 (ScrollTri
 
 ## Deploying
 
-Each folder is its own Vercel project, connected to this repository with its folder as the Root Directory. A push to `main` rebuilds only the projects whose folder changed (each project's Ignored Build Step runs `git diff --quiet HEAD^ HEAD -- .`).
+Each folder is its own Vercel project, connected to this repository with its folder as the Root Directory. A push to `main` rebuilds only the projects whose folder changed since their last deploy (each project's Ignored Build Step compares its folder against `$VERCEL_GIT_PREVIOUS_SHA`, and always builds when there is no earlier deploy).
 
 The portfolio reads the concept-site URLs from `NEXT_PUBLIC_NOIR_URL`, `NEXT_PUBLIC_VANTA_URL`, `NEXT_PUBLIC_ATELIER_URL` and `NEXT_PUBLIC_NOVA_URL`, which are set in its Vercel project.
 
