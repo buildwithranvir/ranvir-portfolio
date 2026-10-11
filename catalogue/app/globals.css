@@ -1,0 +1,234 @@
+@import "tailwindcss";
+
+/* ─── Ranvir's Templates: a paint shop counter ─────────────────────
+   Warm paper, ink, and the shop's own paint colours. No purples.     */
+
+@theme {
+  --color-counter: #f3eee4;
+  --color-card: #fbf8f2;
+  --color-ink: #151310;
+  --color-dust: #6b645a;
+  --color-tomato: #f2542d;
+  --color-cobalt: #1f4fd8;
+  --color-sun: #f6c12e;
+  --color-mint: #21b07e;
+  --color-bubble: #ff8fb1;
+  --color-tangerine: #ff9a1f;
+  --color-teal: #0f8b8d;
+
+  --font-display: var(--font-shoulders), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+html {
+  background: var(--color-counter);
+  color: var(--color-ink);
+  /* things that slide in from the sides must never widen the page on a phone */
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  /* the current room's paint, for the cursor ring and the bottom bar */
+  --room: var(--color-ink);
+}
+body {
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+::selection {
+  background: var(--color-sun);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cobalt);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* component classes sit in a layer, so Tailwind utilities on the same element win */
+@layer components {
+  /* display type: paint-can labels */
+  .display {
+    font-family: var(--font-display);
+    font-variation-settings: "opsz" 72;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 0.86;
+    letter-spacing: -0.01em;
+  }
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+}
+
+/* paper grain: one static tile over everything (painted once, never animated) */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0 0.06 0 0 0 1.1 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@layer components {
+/* ─── The paint chip ───────────────────────────────────────────── */
+.chip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--paint);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.35) inset,
+    0 18px 40px -22px rgb(21 19 16 / 0.55),
+    0 2px 6px -2px rgb(21 19 16 / 0.25);
+}
+.chip-label {
+  margin-top: auto;
+  background: var(--color-card);
+  color: var(--color-ink);
+  border-top: 1px solid rgb(21 19 16 / 0.08);
+}
+/* the rivet hole of a fan deck */
+.chip-hole {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--color-counter);
+  box-shadow: inset 0 1px 2px rgb(21 19 16 / 0.35);
+}
+
+/* ─── Buttons ─────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  height: 3rem;
+  padding: 0 1.25rem;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    transform 0.4s var(--ease-out-expo),
+    background-color 0.3s,
+    color 0.3s,
+    box-shadow 0.3s;
+}
+.btn:active {
+  transform: scale(0.96);
+}
+@media (hover: hover) {
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+}
+}
+
+/* the auto-scrolling screenshot inside a device frame */
+.screen-roll {
+  will-change: transform;
+}
+
+/* deck thumbnails scroll slowly through their site (paused while the deck is off screen) */
+@keyframes thumb-roll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% + var(--frame-h)));
+  }
+}
+.thumb-roll {
+  animation: thumb-roll var(--roll-time, 40s) ease-in-out infinite alternate;
+}
+.is-off .thumb-roll,
+.thumb-roll.is-off {
+  animation-play-state: paused;
+}
+
+/* ─── The deck ─────────────────────────────────────────────────
+   Phones and tablets: a swipe strip. Laptops: a fan across the counter,
+   overlapping more as more templates are added so it always fits. */
+.dk-chip {
+  width: 72vw;
+  max-width: 300px;
+}
+@media (min-width: 640px) {
+  .dk-chip {
+    width: 46vw;
+  }
+}
+@media (min-width: 1024px) {
+  .dk-chip {
+    width: 250px;
+    margin-left: calc(-1 * max(30px, (var(--n) * 250px - min(1400px, 100vw - 4rem)) / (var(--n) - 1)));
+    transform-origin: 50% 100%;
+    transform: translateY(calc(var(--i) * var(--i) * 9px)) rotate(calc(var(--i) * 4deg));
+    transition: transform 0.7s var(--ease-out-expo);
+  }
+  .dk-chip:first-child {
+    margin-left: 0;
+  }
+  @media (hover: hover) {
+    .dk-chip:hover {
+      z-index: 60 !important;
+      transform: translateY(-34px) rotate(0deg) scale(1.03);
+    }
+    .dk-chip:hover ~ .dk-chip {
+      transform: translateX(38px) translateY(calc(var(--i) * var(--i) * 9px)) rotate(calc(var(--i) * 5deg));
+    }
+    .dk-chip:has(~ .dk-chip:hover) {
+      transform: translateX(-38px) translateY(calc(var(--i) * var(--i) * 9px)) rotate(calc(var(--i) * 5deg));
+    }
+  }
+}
+
+/* hide the horizontal scrollbar on the phone deck */
+.no-bar {
+  scrollbar-width: none;
+}
+.no-bar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* while the loader is up, nothing scrolls and the page waits underneath */
+html.js:not(.loaded) body {
+  overflow: hidden;
+}
+/* without JavaScript there is no loader: the page is simply there */
+html:not(.js) .loader {
+  display: none;
+}

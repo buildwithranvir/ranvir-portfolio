@@ -1,11 +1,15 @@
 {
   "name": "studio-templates",
   "private": true,
-  "description": "Five independent Next.js projects: a studio showcase and four demo websites.",
+  "description": "Ranvir Kawatra's portfolio, his templates site and the concept websites they present. Each folder is its own Next.js project.",
   "scripts": {
     "install:all": "node scripts/run-all.mjs install",
     "dev:all": "node scripts/dev-all.mjs",
     "build:all": "node scripts/run-all.mjs build",
-    "lint:all": "node scripts/run-all.mjs lint"
+    "lint:all": "node scripts/run-all.mjs lint",
+    "capture": "node scripts/capture-template.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0"
   }
 }
