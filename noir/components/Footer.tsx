@@ -12,7 +12,7 @@ export function Footer() {
       <div className="wrap grid grid-cols-1 items-center gap-14 md:grid-cols-2 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <p className="font-display text-[clamp(2rem,3.4vw,3rem)] leading-[1.05]">Thanks for stopping by.</p>
-          <p className="note mt-3">come back tomorrow — the knots are better warm</p>
+          <p className="note mt-3">come back tomorrow, the knots are better warm</p>
           <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem]">
             {site.socials.map((s) => (
               <li key={s.label}>

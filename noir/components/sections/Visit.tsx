@@ -68,7 +68,7 @@ export function Visit() {
                       {i === day && <span className="note ml-2 !text-[1.1rem]">today</span>}
                     </th>
                     <td className="py-1.5 text-right tabular-nums">
-                      {h.open} – {h.close}
+                      {h.open} to {h.close}
                     </td>
                   </tr>
                 ))}

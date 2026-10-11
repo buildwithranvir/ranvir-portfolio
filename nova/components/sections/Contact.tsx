@@ -11,7 +11,7 @@ const snap = [0.2, 0.9, 0.1, 1] as const;
 const MAX = 600;
 
 const next = [
-  { n: "01", t: "We reply", d: "A real person answers within two working days — usually sooner." },
+  { n: "01", t: "We reply", d: "A real person answers within two working days, usually sooner." },
   { n: "02", t: "A 30-minute call", d: "We ask a lot of questions and tell you honestly if we're the right studio." },
   { n: "03", t: "A one-page plan", d: "Scope, timeline and a fixed price, within a week of the call." },
 ];
@@ -32,7 +32,7 @@ function useLisbonTime() {
 /**
  * Contact, set out as the studio's workbench: the pitch, a copyable address and
  * what happens next on the left; the brief itself on the right, written like a
- * small program — line numbers, flags, a progress bar and a run log on send.
+ * small program - line numbers, flags, a progress bar and a run log on send.
  */
 export function Contact() {
   const ref = useRef<HTMLElement>(null);
@@ -142,7 +142,7 @@ export function Contact() {
               Got a <span className="text-signal">brief?</span>
             </h2>
             <p className="ct-fade mt-6 max-w-[36ch] text-lg leading-relaxed text-ice/80">
-              Tell us what you&rsquo;re trying to make — a sentence is enough to start. We reply to every message within two working days.
+              Tell us what you&rsquo;re trying to make. A sentence is enough to start. We reply to every message within two working days.
             </p>
 
             {/* email as a control: copy, or open the mail app */}

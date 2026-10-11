@@ -147,5 +147,5 @@ export const backIssues: { n: string; title: string; season: string; pieces: num
   { n: "07", title: "Quiet Armour", season: "SS26", pieces: 24, filter: "Quiet Armour", image: { src: cover, alt: "Issue 07 cover: a model in a black coat and hat" } },
   { n: "06", title: "Nocturne", season: "AW25", pieces: 31, filter: "Nocturne", image: { src: street, alt: "Issue 06 cover: a woman in a dark coat on a city street" } },
   { n: "05", title: "Line & Void", season: "SS25", pieces: 18, filter: "Line & Void", image: { src: violet, alt: "Issue 05 cover: portrait of a woman in a black crewneck under violet light" } },
-  { n: "01–04", title: "The Archive", season: "2014 – 2024", pieces: 140, filter: "All", image: { src: rack, alt: "A rail of garments in a bright white studio" } },
+  { n: "01-04", title: "The Archive", season: "2014-2024", pieces: 140, filter: "All", image: { src: rack, alt: "A rail of garments in a bright white studio" } },
 ];

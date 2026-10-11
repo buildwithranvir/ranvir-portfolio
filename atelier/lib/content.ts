@@ -148,11 +148,11 @@ export const details: (Img & { title: string; ref: string; typology: Project["ty
 ];
 
 export const services = [
-  { name: "Architecture", scope: "New buildings, extensions and adaptive reuse", duration: "12 – 36 months", deliverables: "Feasibility, planning, technical design, site supervision" },
-  { name: "Interiors", scope: "Joinery, lighting, materials and furniture, drawn with the building", duration: "4 – 14 months", deliverables: "Layouts, finish schedules, lighting, bespoke joinery" },
-  { name: "Residential planning", scope: "Briefing and planning for private houses", duration: "2 – 6 months", deliverables: "Brief, site analysis, massing, planning application" },
-  { name: "Commercial projects", scope: "Workplaces, hospitality and retail fit-outs", duration: "6 – 18 months", deliverables: "Workplace strategy, design, phased delivery" },
-  { name: "Consultation", scope: "Second opinions for owners, developers and architects", duration: "1 – 4 weeks", deliverables: "Design review, daylight study, material advice" },
+  { name: "Architecture", scope: "New buildings, extensions and adaptive reuse", duration: "12 to 36 months", deliverables: "Feasibility, planning, technical design, site supervision" },
+  { name: "Interiors", scope: "Joinery, lighting, materials and furniture, drawn with the building", duration: "4 to 14 months", deliverables: "Layouts, finish schedules, lighting, bespoke joinery" },
+  { name: "Residential planning", scope: "Briefing and planning for private houses", duration: "2 to 6 months", deliverables: "Brief, site analysis, massing, planning application" },
+  { name: "Commercial projects", scope: "Workplaces, hospitality and retail fit-outs", duration: "6 to 18 months", deliverables: "Workplace strategy, design, phased delivery" },
+  { name: "Consultation", scope: "Second opinions for owners, developers and architects", duration: "1 to 4 weeks", deliverables: "Design review, daylight study, material advice" },
 ];
 
 export const process: Img[] = [

@@ -6,7 +6,7 @@ import { stats, team, workshop } from "@/lib/content";
 import { gsap, MOTION_OK, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { Lines, Stretch } from "../motion/Reveal";
 
-/** The people behind the label — each portrait develops in its own way. */
+/** The people behind the label - each portrait develops in its own way. */
 export function Studio() {
   const ref = useRef<HTMLElement>(null);
 
@@ -17,17 +17,17 @@ export function Studio() {
         const cards = gsap.utils.toArray<HTMLElement>(".person");
         const on = (el: HTMLElement) => ({ trigger: el, start: "top 82%", once: true });
 
-        // 0 — venetian blinds lift
+        // 0 - venetian blinds lift
         gsap.to(cards[0].querySelectorAll(".blind"), { scaleY: 0, duration: 1.1, ease: "power4.inOut", stagger: 0.07, scrollTrigger: on(cards[0]) });
-        // 1 — iris opens from the centre
+        // 1 - iris opens from the centre
         gsap.fromTo(cards[1].querySelector(".frame"), { clipPath: "circle(0% at 50% 50%)" }, { clipPath: "circle(75% at 50% 50%)", duration: 1.5, ease: "expo.out", scrollTrigger: on(cards[1]) });
-        // 2 — a diagonal blade cuts across
+        // 2 - a diagonal blade cuts across
         gsap.fromTo(
           cards[2].querySelector(".frame"),
           { clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)" },
           { clipPath: "polygon(0% 0%, 140% 0%, 100% 100%, 0% 100%)", duration: 1.3, ease: "power4.inOut", scrollTrigger: on(cards[2]) },
         );
-        // 3 — rises from below while the photo settles out of a zoom
+        // 3 - rises from below while the photo settles out of a zoom
         gsap.fromTo(cards[3].querySelector(".frame"), { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.3, ease: "expo.inOut", scrollTrigger: on(cards[3]) });
         gsap.from(cards[3].querySelector("img"), { scale: 1.1, duration: 1.3, ease: "expo.out", scrollTrigger: on(cards[3]) });
 

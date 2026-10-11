@@ -147,7 +147,7 @@ export function Hero() {
             <div className="label mt-2 flex items-center gap-3 text-ink/65">
               <span className="h-3 w-px bg-current" />
               <span className="h-px flex-1 bg-current opacity-50" />
-              <span>Fig. 1 — Four houses on a folding screen, 1:50</span>
+              <span>Fig. 1 · Four houses on a folding screen, 1:50</span>
               <span className="h-px flex-1 bg-current opacity-50" />
               <span className="h-3 w-px bg-current" />
             </div>

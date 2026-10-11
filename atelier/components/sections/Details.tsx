@@ -152,7 +152,7 @@ export function Details() {
           >
             <div className="sheet flex h-16 items-center justify-between border-b border-paper/15">
               <p className="label" aria-live="polite">
-                <span className="text-ochre">{current.ref}</span> — {current.title}
+                <span className="text-ochre">{current.ref}</span> · {current.title}
               </p>
               <button id="viewer-close" type="button" onClick={close} className="label h-10 px-3 hover:text-ochre">
                 Close ✕

@@ -1,11 +1,11 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
-/* ─── VANTA — "Acid Atelier" ───────────────────────────────────────
+/* ─── VANTA - "Acid Atelier" ───────────────────────────────────────
    Aubergine-black ink, porcelain, a deep plum and one chartreuse
    highlighter. The page colour itself moves: each section declares a
    theme and the background crossfades as you scroll into it.
-   Type: Anybody (variable width 50–150 — squeezes and stretches),
+   Type: Anybody (variable width 50-150 - squeezes and stretches),
    Bodoni Moda italic (accent words), Albert Sans (reading),
    Martian Mono (labels). */
 @theme {
@@ -105,7 +105,7 @@ html:not(.bg-live) [data-theme="acid"] {
 }
 
 @layer components {
-  /* Display: Anybody with a controllable width. Set --w (50–150) per element. */
+  /* Display: Anybody with a controllable width. Set --w (50-150) per element. */
   .display {
     font-family: var(--font-display);
     font-variation-settings: "wdth" var(--w, 100);

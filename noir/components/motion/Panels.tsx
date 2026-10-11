@@ -4,7 +4,7 @@ import { gsap, MOTION_OK, useGSAP } from "@/lib/gsap";
 
 /**
  * The dark sections are rounded cards inset from the page edge. As one scrolls
- * in, it widens to fill the frame — a quiet transition between moods.
+ * in, it widens to fill the frame - a quiet transition between moods.
  */
 export function Panels() {
   useGSAP(() => {

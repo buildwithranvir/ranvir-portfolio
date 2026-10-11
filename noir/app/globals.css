@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
-/* ─── NOIR — tokens ───────────────────────────────────────────────
+/* ─── NOIR - tokens ───────────────────────────────────────────────
    Milk paper, espresso ink, deep olive and a burgundy pencil.
    Type: Gloock (display), Familjen Grotesk (text), Reenie Beanie (notes). */
 @theme {
@@ -36,7 +36,7 @@
     overflow-x: clip;
   }
 
-  /* Paper grain over the whole page — subtle, never on top of controls */
+  /* Paper grain over the whole page - subtle, never on top of controls */
   body::after {
     content: "";
     position: fixed;
@@ -100,7 +100,7 @@
     line-height: 1.05;
   }
 
-  /* Warm frosted glass — only for things that float over photography */
+  /* Warm frosted glass - only for things that float over photography */
   .glass {
     background: color-mix(in srgb, var(--color-milk) 62%, transparent);
     -webkit-backdrop-filter: blur(16px) saturate(1.25);

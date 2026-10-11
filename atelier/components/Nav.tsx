@@ -21,7 +21,7 @@ export function Logo({ className = "" }: { className?: string }) {
 }
 
 /**
- * A slim drawing-board header. Its bottom edge is a scale bar (0 — 10 — 20 m)
+ * A slim drawing-board header. Its bottom edge is a scale bar (0 - 10 - 20 m)
  * that fills in cobalt as you scroll down the page.
  */
 export function Nav() {

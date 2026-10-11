@@ -12,7 +12,7 @@ import { setLenis } from "@/lib/scroll";
  */
 export function SmoothScroll() {
   // Accordions, filters and form messages change the page height after
-  // ScrollTrigger has measured it — re-measure (debounced) whenever that happens.
+  // ScrollTrigger has measured it - re-measure (debounced) whenever that happens.
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
     let lastHeight = document.body.scrollHeight;

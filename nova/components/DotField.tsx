@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 /**
- * A field of dots that lean away from the pointer and light up near it —
+ * A field of dots that lean away from the pointer and light up near it -
  * the studio's "instrument". Plain 2D canvas, paused when off-screen, and
  * drawn once (static) for reduced-motion visitors.
  */

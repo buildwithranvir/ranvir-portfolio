@@ -86,14 +86,14 @@ export const capabilities = [
   { id: "01", name: "Websites", detail: "Marketing sites and editorial platforms, designed and built in-house.", tools: ["Next.js", "Headless CMS", "Accessibility"] },
   { id: "02", name: "Brand systems", detail: "Identities that are drawn for screens first: type, colour, motion rules.", tools: ["Strategy", "Type", "Guidelines"] },
   { id: "03", name: "Product design", detail: "Interfaces for apps and tools, prototyped in code early.", tools: ["UX research", "Prototyping", "Design systems"] },
-  { id: "04", name: "Interactive", detail: "Campaign pieces, WebGL and installations — when the brief needs something new.", tools: ["WebGL", "Generative", "Hardware"] },
+  { id: "04", name: "Interactive", detail: "Campaign pieces, WebGL and installations, for when the brief needs something new.", tools: ["WebGL", "Generative", "Hardware"] },
 ];
 
 export const method = [
-  { id: "01", name: "Listen", weeks: "wk 1–2", from: 1, to: 2, deliverables: ["Interviews", "Audit", "Analytics review"], text: "Interviews, audits, a week inside your team. We learn the business until we can argue for it.", image: { src: wSketch, alt: "Hand sketching wireframes on paper" } },
-  { id: "02", name: "Frame", weeks: "wk 2–3", from: 2, to: 3, deliverables: ["One-page brief", "Success metrics", "Moodboards"], text: "A one-page brief everyone signs: what we're making, for whom, and how we'll know it worked.", image: { src: wWire, alt: "Wireframes laid out on a desk" } },
-  { id: "03", name: "Make", weeks: "wk 3–10", from: 3, to: 10, deliverables: ["Friday demos", "Design system", "Working build"], text: "Design and code together, demoed every Friday. You see working software from week three.", image: { src: wApp, alt: "A phone showing an app interface" } },
-  { id: "04", name: "Ship", weeks: "wk 10–12", from: 10, to: 12, deliverables: ["Launch", "Measurement", "90-day care plan"], text: "Launch, measure, fix. Then a ninety-day care plan, because nothing is finished on launch day.", image: { src: wScreens, alt: "A wall of screens" } },
+  { id: "01", name: "Listen", weeks: "wk 1-2", from: 1, to: 2, deliverables: ["Interviews", "Audit", "Analytics review"], text: "Interviews, audits, a week inside your team. We learn the business until we can argue for it.", image: { src: wSketch, alt: "Hand sketching wireframes on paper" } },
+  { id: "02", name: "Frame", weeks: "wk 2-3", from: 2, to: 3, deliverables: ["One-page brief", "Success metrics", "Moodboards"], text: "A one-page brief everyone signs: what we're making, for whom, and how we'll know it worked.", image: { src: wWire, alt: "Wireframes laid out on a desk" } },
+  { id: "03", name: "Make", weeks: "wk 3-10", from: 3, to: 10, deliverables: ["Friday demos", "Design system", "Working build"], text: "Design and code together, demoed every Friday. You see working software from week three.", image: { src: wApp, alt: "A phone showing an app interface" } },
+  { id: "04", name: "Ship", weeks: "wk 10-12", from: 10, to: 12, deliverables: ["Launch", "Measurement", "90-day care plan"], text: "Launch, measure, fix. Then a ninety-day care plan, because nothing is finished on launch day.", image: { src: wScreens, alt: "A wall of screens" } },
 ];
 
 export const stats = [
@@ -104,7 +104,7 @@ export const stats = [
 ];
 
 export const quotes = [
-  { quote: "They made the product feel inevitable — and easier to use.", who: "Head of Product, Halo Money" },
+  { quote: "They made the product feel inevitable, and easier to use.", who: "Head of Product, Halo Money" },
   { quote: "Fast, fearless, and genuinely kind to work with.", who: "Founder, Arcadia Games" },
   { quote: "Our sample orders doubled the month the tool went live.", who: "Marketing Director, Spectrum Paints" },
   { quote: "They sweat details we didn't know existed.", who: "CTO, Orbit Labs" },
@@ -112,4 +112,4 @@ export const quotes = [
 ];
 
 export const contactServices = ["Website", "Brand system", "Product", "Interactive", "Not sure yet"];
-export const budgets = ["< 25k", "25–60k", "60–150k", "150k +"];
+export const budgets = ["< 25k", "25-60k", "60-150k", "150k +"];

@@ -100,10 +100,10 @@ export function ProjectSheet({ index, onChange }: { index: number | null; onChan
                 <div className="space-y-12 lg:col-span-6 lg:col-start-7">
                   {images.map((img, i) => (
                     <figure key={img.alt} className="max-w-[34rem]">
-                      {/* Natural proportions — no cropping on the project sheet */}
+                      {/* Natural proportions - no cropping on the project sheet */}
                       <Image src={img.src} alt={img.alt} placeholder="blur" sizes="(min-width: 1024px) 50vw, 100vw" className="grade h-auto w-full outline outline-1 outline-offset-4 outline-ink/20" />
                       <figcaption className="label mt-3 text-ink/65">
-                        Fig. {i + 1} — {img.alt}
+                        Fig. {i + 1} · {img.alt}
                       </figcaption>
                     </figure>
                   ))}

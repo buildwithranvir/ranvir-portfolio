@@ -3,7 +3,7 @@ import { Albert_Sans, Anybody, Bodoni_Moda, Martian_Mono } from "next/font/googl
 import { site } from "@/lib/site";
 import "./globals.css";
 
-// Anybody's width axis (50–150) is the house signature: type that squeezes and stretches.
+// Anybody's width axis (50-150) is the house signature: type that squeezes and stretches.
 const anybody = Anybody({ subsets: ["latin"], axes: ["wdth"], variable: "--font-anybody" });
 const bodoni = Bodoni_Moda({ subsets: ["latin"], style: ["normal", "italic"], axes: ["opsz"], variable: "--font-bodoni" });
 const albert = Albert_Sans({ subsets: ["latin"], variable: "--font-albert" });
@@ -14,10 +14,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : site.url,
   ),
-  title: `${site.name} — ${site.tagline}`,
+  title: `${site.name} | ${site.tagline}`,
   description: site.description,
   openGraph: {
-    title: `${site.name} — ${site.tagline}`,
+    title: `${site.name} | ${site.tagline}`,
     description: site.description,
     type: "website",
     siteName: site.name,

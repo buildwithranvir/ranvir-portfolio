@@ -47,7 +47,7 @@ export function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-void to-transparent" />
 
       <div className="frame flex min-h-[100svh] flex-col justify-end pb-10 pt-28 md:pb-14">
-        <p className="hero-scramble mono mb-6 text-signal">Design & creative technology studio — est. 2015</p>
+        <p className="hero-scramble mono mb-6 text-signal">Design & creative technology studio · est. 2015</p>
         <h1 id="hero-title" className="hero-type pointer-events-none leading-[0.84]">
           <span className="hero-line wide block text-[clamp(3.4rem,12.5vw,13rem)]">Curious</span>
           <span className="hero-line condensed block text-[clamp(2.6rem,9vw,9.5rem)] text-mist">

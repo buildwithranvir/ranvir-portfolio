@@ -31,7 +31,7 @@ export function Hero() {
           .from(".hero-fact", { opacity: 0, y: 16, duration: 1, stagger: 0.1 }, 1.1)
           .from(".hero-cue", { opacity: 0, duration: 1 }, 1.8);
 
-        // The small print drifts slower than the page — a quiet, papery parallax.
+        // The small print drifts slower than the page - a quiet, papery parallax.
         gsap.to(".hero-inset", {
           y: -40,
           ease: "none",
@@ -47,7 +47,7 @@ export function Hero() {
       <div aria-hidden className="glow -right-20 top-24 h-[28rem] w-[28rem] bg-oat" />
       <div aria-hidden className="glow -left-32 top-[55%] h-[22rem] w-[22rem] bg-burgundy/40" />
       <div className="wrap relative">
-        {/* Masthead — reads like the top of a printed menu */}
+        {/* Masthead - reads like the top of a printed menu */}
         <div className="masthead label grid grid-cols-2 gap-y-2 border-y border-ink/20 py-3 text-ink-soft max-[360px]:text-[0.625rem] max-[360px]:tracking-[0.06em] md:grid-cols-4">
           <span>Nº 27 Alder Lane</span>
           <span className="text-right md:text-left">Kaffebar &amp; Bageri</span>
@@ -103,15 +103,15 @@ export function Hero() {
             </figure>
           </div>
 
-          {/* Today's special — a pencil note pinned to the page */}
+          {/* Today's special - a pencil note pinned to the page */}
           <aside
             aria-label="Today's special"
             className="hero-note relative mt-14 w-full max-w-[19rem] -rotate-2 self-start rounded-[6px] md:mt-16 lg:col-start-1 lg:row-start-2 lg:mt-0 bg-milk px-6 pb-5 pt-6 shadow-[0_14px_30px_-18px_rgba(34,22,15,0.5)]"
           >
             <span aria-hidden className="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 rotate-2 bg-oat/70" />
             <p className="label text-ink-soft">{special ? `${special.day}'s special` : "Today's special"}</p>
-            <p className="note mt-2">{special ? special.item : "Ask at the bar — it changes daily"}</p>
-            {special && special.price !== "—" && special.price !== "0.00" && <p className="mt-3 text-sm tabular-nums">€{special.price}</p>}
+            <p className="note mt-2">{special ? special.item : "Ask at the bar, it changes daily"}</p>
+            {special && special.price && special.price !== "0.00" && <p className="mt-3 text-sm tabular-nums">€{special.price}</p>}
           </aside>
         </div>
 

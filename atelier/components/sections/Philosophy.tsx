@@ -37,7 +37,7 @@ export function Philosophy() {
           </div>
           <p className="label text-ink/75">
             <span id="philosophy-title" className="block text-ink">Note on method</span>
-            <span className="mt-1 block">— C. Morrow &amp; J. Vale</span>
+            <span className="mt-1 block">C. Morrow &amp; J. Vale</span>
           </p>
         </div>
 

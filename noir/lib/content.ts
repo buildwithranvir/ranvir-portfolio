@@ -30,7 +30,7 @@ export const specials = [
   { day: "Thursday", item: "Espresso tonic with blood orange", price: "5.20" },
   { day: "Friday", item: "Sourdough focaccia, tomato, oregano", price: "5.50" },
   { day: "Saturday", item: "The long-table breakfast for two", price: "24.00" },
-  { day: "Sunday", item: "Pastry until it runs out (it will)", price: "—" },
+  { day: "Sunday", item: "Pastry until it runs out (it will)", price: "" },
 ];
 
 /** A day at the café, told as a sequence of moments. */

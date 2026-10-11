@@ -6,7 +6,7 @@ import { enter, gsap, INTRO_DELAY, MOTION_OK, SplitText, useGSAP } from "@/lib/g
 
 /*
  * ATELIER's motion vocabulary: everything arrives the way a card model is
- * put together — flat pieces fold up along a crease and lock in place.
+ * put together - flat pieces fold up along a crease and lock in place.
  * Each animation plays through to the end once it starts; none of them is
  * tied to the scroll position, so nothing is ever left half-folded.
  */
@@ -74,7 +74,7 @@ const marks = {
 
 /**
  * A key word, marked the way an architect marks up a print: underlined,
- * ringed, or washed with a highlighter. The word itself never hides — only
+ * ringed, or washed with a highlighter. The word itself never hides - only
  * the pencil stroke draws in when it scrolls into view.
  */
 export function Mark({ kind = "under", tone = "text-terracotta", children }: { kind?: keyof typeof marks; tone?: string; children: ReactNode }) {

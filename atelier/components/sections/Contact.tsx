@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 import { FoldText, Mark, Seam } from "../motion/Fold";
 
 const types = ["New build", "Renovation", "Interior", "Commercial", "Consultation"];
-const budgets = ["Under 250k", "250k – 750k", "750k – 2M", "Over 2M", "Not sure yet"];
+const budgets = ["Under 250k", "250k-750k", "750k-2M", "Over 2M", "Not sure yet"];
 
 type F = { name: string; email: string; type: string; budget: string; site: string; brief: string };
 type E = Partial<Record<keyof F, string>>;
@@ -17,7 +17,7 @@ function validate(f: F): E {
   if (f.name.trim().length < 2) e.name = "Required.";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.trim())) e.email = "A valid email, please.";
   if (!f.type) e.type = "Choose a type of project.";
-  if (f.brief.trim().length < 20) e.brief = "A few sentences — at least 20 characters.";
+  if (f.brief.trim().length < 20) e.brief = "A few sentences, at least 20 characters.";
   return e;
 }
 
@@ -116,7 +116,7 @@ export function Contact() {
                     <textarea id="c-brief" data-field="brief" rows={4} value={f.brief} onChange={(e) => set("brief", e.target.value)} className={`${input("brief")} resize-none`} aria-invalid={!!errors.brief} aria-describedby={errors.brief ? "c-brief-err" : undefined} />
                   </Field>
                   <div className="flex flex-col gap-4 border-t border-paper/20 pt-6 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
-                    <p className="label text-paper/60">Demo form — nothing is sent or stored.</p>
+                    <p className="label text-paper/60">Demo form. Nothing is sent or stored.</p>
                     <button
                       type="submit"
                       disabled={status === "sending"}
@@ -139,7 +139,7 @@ export function Contact() {
                     >
                       {k === 0 && (
                         <>
-                          <p className="label text-rust">Brief received — demo</p>
+                          <p className="label text-rust">Brief received · demo</p>
                           <p className="display mt-3 text-[2rem] tracking-[-0.03em]">Thank you, {f.name.trim().split(" ")[0]}.</p>
                         </>
                       )}

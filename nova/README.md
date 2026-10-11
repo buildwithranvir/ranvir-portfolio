@@ -1,6 +1,6 @@
-# NOVA — creative technology studio template
+# NOVA - creative technology studio template
 
-A studio site built like an instrument: graphite, cold glass panels and one signal orange. No WebGL — the hero is a lightweight 2D canvas. Part of the Studio Templates collection — see the root `README.md` for the full guide.
+A studio site built like an instrument: graphite, cold glass panels and one signal orange. No WebGL - the hero is a lightweight 2D canvas. Part of the Studio Templates collection - see the root `README.md` for the full guide.
 
 ```bash
 npm install
@@ -8,7 +8,7 @@ npm run dev      # http://localhost:3004
 npm run build && npm start
 ```
 
-**Sections:** Hero with cursor-reactive dot field and glass readouts; Selected work — stacked sticky case-study cards + modal; Capabilities — expanding glass columns; Method — sticky glass monitor following the steps; Numbers + quote ribbon (demo figures); Console-style contact form (demo); Status-bar footer.
+**Sections:** Hero with cursor-reactive dot field and glass readouts; Selected work - stacked sticky case-study cards + modal; Capabilities - expanding glass columns; Method - sticky glass monitor following the steps; Numbers + quote ribbon (demo figures); Console-style contact form (demo); Status-bar footer.
 
 **Type:** Bricolage Grotesque (width + optical size), JetBrains Mono. Colours, fonts and easing live in the `@theme` block of `app/globals.css`.
 

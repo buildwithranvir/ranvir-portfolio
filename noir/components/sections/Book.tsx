@@ -26,7 +26,7 @@ function validate(f: Fields): Errors {
   return e;
 }
 
-/** Booking request on a paper slip with a torn edge. Simulated — nothing is sent. */
+/** Booking request on a paper slip with a torn edge. Simulated - nothing is sent. */
 export function Book() {
   const [f, setF] = useState<Fields>(empty);
   const [guests, setGuests] = useState(2);
@@ -83,7 +83,7 @@ export function Book() {
           <ul className="glass-dark mt-10 max-w-[24rem] space-y-3 rounded-[18px] p-5 text-[0.9rem]">
             {[
               ["15 min", "We hold the table this long, then it goes to the queue."],
-              ["1 – 8", "Guests per request. Bigger groups, email us."],
+              ["1 to 8", "Guests per request. Bigger groups, email us."],
               ["€0", "No deposit and no card details."],
             ].map(([k, v]) => (
               <li key={k} className="flex gap-4">

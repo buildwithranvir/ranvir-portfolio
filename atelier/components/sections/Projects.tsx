@@ -90,7 +90,7 @@ export function Projects() {
         <div className="mt-24 md:mt-32">
           <div className="flex flex-wrap items-baseline justify-between gap-3 border-b-2 border-ink pb-3">
             <h3 className="display text-[1.5rem] tracking-[-0.03em]">Schedule of projects</h3>
-            <p className="label text-ink/60">2023 – 2027 · {projects.length} entries</p>
+            <p className="label text-ink/60">2023 to 2027 · {projects.length} entries</p>
           </div>
           <table className="sched w-full border-collapse text-left">
             <caption className="sr-only">All projects</caption>

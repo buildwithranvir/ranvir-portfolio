@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { gsap, MOTION_OK, useGSAP } from "@/lib/gsap";
 
-/** Numbered section label — "01 — The day" — with a hairline that draws in. */
+/** Numbered section label - "01 - The day" - with a hairline that draws in. */
 export function Eyebrow({ n, children, tone = "ink" }: { n: string; children: string; tone?: "ink" | "light" }) {
   const ref = useRef<HTMLParagraphElement>(null);
 

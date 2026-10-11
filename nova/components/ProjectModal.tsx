@@ -57,7 +57,7 @@ export function ProjectModal({ project, onClose }: { project: Project | null; on
               <div className="flex flex-col p-6 md:p-8">
                 <div className="flex items-start justify-between gap-4">
                   <p className="mono text-signal">
-                    {project.code} — {project.discipline}
+                    {project.code} · {project.discipline}
                   </p>
                   <button ref={closeBtn} type="button" onClick={onClose} aria-label="Close case study" className="mono -mr-2 -mt-2 h-10 rounded-lg px-3 text-mist hover:bg-white/[0.06] hover:text-ice">
                     esc ✕

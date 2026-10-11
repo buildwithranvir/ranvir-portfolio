@@ -97,7 +97,7 @@ export function Work() {
           <h2 id="work-title" className="reveal-title wide text-[clamp(2.6rem,6vw,5.5rem)] leading-[0.9]">
             Selected work
           </h2>
-          <p className="mono max-w-[38ch] text-mist">04 projects · 2024–2026 · all clients here are fictional demo content</p>
+          <p className="mono max-w-[38ch] text-mist">04 projects · 2024-2026 · all clients here are fictional demo content</p>
         </div>
 
         <WorkCarousel onOpen={setOpen} />
@@ -143,7 +143,7 @@ export function Work() {
                       </span>
                       <span className="mono mt-1.5 block truncate text-mist">
                         <span className="text-signal lg:hidden">{proj.code} · </span>
-                        {proj.discipline} — {proj.line}
+                        {proj.discipline} · {proj.line}
                       </span>
                     </span>
 

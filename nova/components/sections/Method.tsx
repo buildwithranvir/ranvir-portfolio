@@ -9,7 +9,7 @@ import { gsap, MOTION_OK, ScrollTrigger, useGSAP } from "@/lib/gsap";
 const WEEKS = 12;
 const snap = [0.2, 0.9, 0.1, 1] as const;
 
-/** A 12-week strip with one phase marked — used on each card on phones and tablets. */
+/** A 12-week strip with one phase marked - used on each card on phones and tablets. */
 function MiniStrip({ from, to }: { from: number; to: number }) {
   return (
     <span aria-hidden className="mt-4 grid grid-cols-12 gap-[3px]">
@@ -102,7 +102,7 @@ export function Method() {
               <div className="mono flex items-center justify-between border-b border-white/10 px-5 py-3 text-mist">
                 <span className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-signal" aria-hidden />
-                  phase <span className="text-ice">{step.id}</span> / 0{method.length} — <span className="text-ice">{step.name.toLowerCase()}</span>
+                  phase <span className="text-ice">{step.id}</span> / 0{method.length} · <span className="text-ice">{step.name.toLowerCase()}</span>
                 </span>
                 <span>{step.weeks}</span>
               </div>

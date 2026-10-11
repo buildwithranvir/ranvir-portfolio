@@ -78,9 +78,9 @@ export function Hero() {
           <span>Issue 07 out now</span>
         </div>
 
-        {/* Wordmark — five letters stretching from narrow to wide */}
+        {/* Wordmark - five letters stretching from narrow to wide */}
         <h1 id="hero-title" className="display relative z-0 mt-4 flex justify-between overflow-hidden text-[min(calc((100vw_-_2.5rem)/5.8),248px)] leading-[0.8] md:text-[min(calc((100vw_-_5rem)/5.8),248px)]" style={{ ["--w" as string]: 150 }}>
-          <span className="sr-only">VANTA — an independent fashion studio</span>
+          <span className="sr-only">VANTA, an independent fashion studio</span>
           {"VANTA".split("").map((c, i) => (
             <span key={i} aria-hidden className="hero-char inline-block">
               {c}
@@ -88,7 +88,7 @@ export function Hero() {
           ))}
         </h1>
 
-        {/* Studio wall — natural photo proportions, nothing cropped tight. Phones and tablets stack it cleanly;
+        {/* Studio wall - natural photo proportions, nothing cropped tight. Phones and tablets stack it cleanly;
             large screens let it overlap the wordmark. */}
         <div className="relative z-10 mt-5 grid grid-cols-2 gap-3 md:gap-4 lg:mt-8 lg:grid-cols-12">
           <div className="depth w-lead col-span-2 lg:col-span-6 lg:col-start-4 lg:row-start-1" data-depth="14">
@@ -117,7 +117,7 @@ export function Hero() {
 
         </div>
 
-        {/* Who we are — a statement set in the display face, with the studio dropped in as tiny photographs */}
+        {/* Who we are - a statement set in the display face, with the studio dropped in as tiny photographs */}
         <p className="hero-statement display mt-16 text-[clamp(2rem,5.6vw,5.4rem)] leading-[1.02] tracking-[-0.025em] [--w:76] md:mt-24">
           We&rsquo;re <span className="serif-i normal-case text-acid">nine people</span>{" "}
           <span aria-hidden className="hero-pill inline-flex translate-y-[-0.06em] align-middle">

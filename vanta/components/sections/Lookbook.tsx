@@ -73,7 +73,7 @@ export function Lookbook() {
   return (
     <section ref={section} id="lookbook" data-theme="plum" aria-label="Hard light, the campaign" className="relative overflow-hidden">
       <p aria-hidden className="lb-ghost display pointer-events-none absolute will-change-transform left-0 top-1/2 hidden -translate-y-1/2 whitespace-nowrap text-[30vh] text-fg/[0.05] [--w:150] lg:block">
-        Hard light — Hard light — Hard light
+        Hard light · Hard light · Hard light
       </p>
 
       {/* Phones and tablets: heading sits above a swipe strip */}

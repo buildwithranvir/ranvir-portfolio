@@ -8,7 +8,7 @@ import { Eyebrow } from "../ui/Eyebrow";
 
 const tilt = ["-rotate-[2.5deg]", "rotate-[1.5deg] lg:mt-16", "-rotate-1 lg:mt-6"];
 
-/** This week's coffees as kraft bag labels — the coffee itself, not another cup photo. */
+/** This week's coffees as kraft bag labels - the coffee itself, not another cup photo. */
 export function Beans() {
   const ref = useRef<HTMLElement>(null);
 
@@ -47,7 +47,7 @@ export function Beans() {
           <dl className="glass-dark mt-10 max-w-[22rem] rounded-[16px] px-5 py-4 text-[0.875rem]">
             {[
               ["Bags", "250 g, whole bean"],
-              ["Price", "€14 – €19"],
+              ["Price", "€14 to €19"],
               ["Grind", "Ask us, free"],
             ].map(([k, v]) => (
               <div key={k} className="flex justify-between gap-4 border-b border-milk/10 py-2 last:border-0">

@@ -63,7 +63,7 @@ export function Room() {
 
       {/* Draggable strip: fixed height, natural widths, so nothing gets cropped */}
       <div className="wrap mt-20 flex items-center justify-between md:mt-28">
-        <p className="label text-milk/50">More of the room — drag, or use the arrows</p>
+        <p className="label text-milk/50">More of the room: drag, or use the arrows</p>
         <div className="flex items-center gap-2">
           <div className="mr-3 hidden h-px w-32 bg-milk/20 sm:block" aria-hidden>
             <motion.div className="h-px origin-left bg-milk" style={{ scaleX: progress }} />

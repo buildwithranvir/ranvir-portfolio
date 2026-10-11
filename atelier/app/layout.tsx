@@ -15,10 +15,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : site.url,
   ),
-  title: `${site.fullName} — ${site.tagline}`,
+  title: `${site.fullName} | ${site.tagline}`,
   description: site.description,
   openGraph: {
-    title: `${site.fullName} — ${site.tagline}`,
+    title: `${site.fullName} | ${site.tagline}`,
     description: site.description,
     type: "website",
     siteName: site.name,

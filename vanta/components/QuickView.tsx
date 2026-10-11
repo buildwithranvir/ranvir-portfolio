@@ -107,7 +107,7 @@ export function QuickView() {
                   <span>Enquire about size {size}</span>
                   <span aria-hidden className="grid h-10 w-10 place-items-center rounded-full bg-acid text-ink transition-transform duration-500 group-hover:-rotate-45">→</span>
                 </a>
-                <p className="mt-3 text-[0.8125rem] text-ink/60">No checkout in this demo — the enquiry opens your email app with the piece and size filled in.</p>
+                <p className="mt-3 text-[0.8125rem] text-ink/60">No checkout in this demo. The enquiry opens your email app with the piece and size filled in.</p>
               </div>
             </div>
           </motion.div>

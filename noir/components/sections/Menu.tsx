@@ -74,7 +74,7 @@ export function Menu() {
             <div className="rounded-[16px] border border-ink/10 px-5 py-8 md:px-10 md:py-10">
               <header className="flex items-baseline justify-between border-b border-ink/20 pb-4">
                 <p className="font-display text-2xl">Noir</p>
-                <p className="label text-ink-soft">Served 07:00 – close</p>
+                <p className="label text-ink-soft">Served 07:00 to close</p>
               </header>
 
               <AnimatePresence mode="wait" initial={false}>

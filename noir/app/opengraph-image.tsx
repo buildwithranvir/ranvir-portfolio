@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Noir — Kaffebar & Bageri. Slow coffee for long mornings.";
+export const alt = "Noir, Kaffebar & Bageri. Slow coffee for long mornings.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -14,7 +14,7 @@ export default function OpengraphImage() {
           <span>EST. 2017</span>
         </div>
         <div style={{ fontSize: 112, lineHeight: 1 }}>Slow coffee for long mornings.</div>
-        <div style={{ fontSize: 30, color: "#6e1f25" }}>Noir — a demo café template</div>
+        <div style={{ fontSize: 30, color: "#6e1f25" }}>Noir · a demo café template</div>
       </div>
     ),
     size,
