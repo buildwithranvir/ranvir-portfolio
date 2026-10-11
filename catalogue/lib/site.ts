@@ -6,7 +6,7 @@ export const site = {
   name: "Ranvir's Templates",
   owner: "Ranvir Kawatra",
   description:
-    "Ready-made website designs by Ranvir Kawatra, a creative web developer in Delhi. Pick the one that feels like your business, and he rebuilds it around your name, words and photos.",
+    "Ready-made website designs by Ranvir Kawatra, a creative web developer in Delhi. Pick one, send your details, and he turns it into your site.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://templatesbyranvir.vercel.app",
   portfolio: "https://buildwithranvir.vercel.app",
   phone: "+91 85958 56713",
@@ -26,14 +26,3 @@ export const whatsapp = (text = "Hi Ranvir, I'd like to talk about a website for
 
 /** The message sent when a client picks a template. */
 export const wantThis = (name: string) => whatsapp(`Hi Ranvir, I'd like a website like ${name} for my business.`);
-
-/** The shop's own paint colours (no purples anywhere on this site). */
-export const shop = {
-  tomato: "#F2542D",
-  cobalt: "#1F4FD8",
-  sun: "#F6C12E",
-  mint: "#21B07E",
-  bubble: "#FF8FB1",
-  tangerine: "#FF9A1F",
-  teal: "#0F8B8D",
-} as const;

@@ -1,177 +1,193 @@
 "use client";
 
-import { useRef, type CSSProperties } from "react";
-import { gsap, MOTION_OK, useGSAP } from "@/lib/gsap";
+import Image from "next/image";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { gsap, MOTION_OK, SplitText, useGSAP } from "@/lib/gsap";
 import { afterLoad } from "@/lib/loader";
+import { magnetic } from "@/lib/reveal";
 import { scrollToHash } from "@/lib/scroll";
-import { shop, whatsapp } from "@/lib/site";
-import { code, onColor, templates } from "@/lib/templates";
-import { AnchorLink } from "./ui/AnchorLink";
+import { whatsapp } from "@/lib/site";
+import { num, shots, templates } from "@/lib/templates";
 
-const Letters = ({ text, className = "" }: { text: string; className?: string }) => (
-  <span className={`block overflow-hidden pb-[0.06em] ${className}`}>
-    {text.split("").map((c, i) => (
-      <span key={i} className="hr-ch inline-block will-change-transform">
-        {c === " " ? " " : c}
-      </span>
-    ))}
-  </span>
-);
-
-// the hero's fan: every template, padded with shop colours so it always looks full
-const fanChips = (() => {
-  const real = templates.map((t, i) => ({ paint: t.colors.paint, id: t.id, code: code(i), name: t.name }));
-  const fill = [shop.sun, shop.mint, shop.bubble, shop.cobalt, shop.tangerine, shop.teal].map((paint) => ({ paint, id: "", code: "", name: "" }));
-  const all = [...real, ...fill].slice(0, Math.max(7, real.length));
-  // templates in the middle of the fan, the colour chips at the edges
-  const out: typeof all = [];
-  all.forEach((c, i) => (i % 2 ? out.push(c) : out.unshift(c)));
-  return out;
-})();
-const SPREAD = 42;
-const fanAngle = (i: number) => -SPREAD + (i * SPREAD * 2) / Math.max(1, fanChips.length - 1);
+const SLIDE = 5.5; // seconds each template stays in the hero window
+const host = (url: string) => url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 
 /**
- * The opening: "Pick a colour. Get a website." A fan of the real templates
- * opens behind the words. With a mouse the fan leans towards the pointer and a
- * chip lifts when pointed at; on touch screens it sways on its own, and a tap
- * on a chip goes straight to that template.
+ * The opening: the promise in two lines, and a browser window that cycles
+ * through every template, each one slowly scrolling. The numbered tabs show
+ * which one is on screen; tapping a tab switches to it.
  */
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
+  const [active, setActive] = useState(0);
+  const [prev, setPrev] = useState<number | null>(null);
+  const [onScreen, setOnScreen] = useState(true);
+  // only the slide on screen and the one fading out hold their (very tall) screenshots
+  const show = (i: number) => {
+    if (i === active) return;
+    setPrev(active);
+    setActive(i);
+  };
 
   useGSAP(
     () => {
+      magnetic(ref.current!);
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
-        gsap.set(".hr-ch", { yPercent: 110 });
+        const split = SplitText.create(".hr-title", { type: "lines", mask: "lines" });
+        gsap.set(split.lines, { yPercent: 110 });
         gsap.set(".hr-in", { y: 24, opacity: 0 });
-        gsap.set(".hr-chip", { rotate: 0, opacity: 0, y: 40 });
-        gsap.set(".hr-drip", { scaleY: 0 });
-        return afterLoad(() => {
+        gsap.set(".hr-frame", { y: 60, scale: 0.96, opacity: 0 });
+        const stop = afterLoad(() =>
           gsap
             .timeline({ defaults: { ease: "expo.out" } })
-            .to(".hr-ch", { yPercent: 0, duration: 1.1, stagger: 0.028 }, 0)
-            .to(".hr-in", { y: 0, opacity: 1, duration: 1, stagger: 0.08 }, 0.45)
-            .to(".hr-chip", { opacity: 1, y: 0, duration: 0.5, stagger: 0.03, ease: "power2.out" }, 0.2)
-            .to(".hr-chip", { rotate: (i) => fanAngle(i), duration: 1.4, stagger: { each: 0.04, from: "center" } }, 0.35)
-            .to(".hr-drip", { scaleY: 1, duration: 1.6, ease: "power2.in", stagger: 0.25 }, 0.9);
-        });
-      });
-      // reduced motion: the fan is simply open
-      mm.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.set(".hr-chip", { rotate: (i) => fanAngle(i) });
-      });
-
-      // mouse: the whole fan leans towards the pointer
-      mm.add(`${MOTION_OK} and (pointer: fine)`, () => {
-        const fanEl = ref.current!.querySelector<HTMLElement>(".hr-fan")!;
-        const lean = gsap.quickTo(fanEl, "rotate", { duration: 1.2, ease: "power3" });
-        const move = (e: PointerEvent) => lean((e.clientX / window.innerWidth - 0.5) * 12);
-        window.addEventListener("pointermove", move, { passive: true });
-        return () => window.removeEventListener("pointermove", move);
-      });
-      // touch: a slow sway
-      mm.add(`${MOTION_OK} and (pointer: coarse)`, () => {
-        gsap.fromTo(".hr-fan", { rotate: -4 }, { rotate: 4, duration: 3.6, ease: "sine.inOut", repeat: -1, yoyo: true });
+            .to(split.lines, { yPercent: 0, duration: 1.3, stagger: 0.1 }, 0.1)
+            .to(".hr-in", { y: 0, opacity: 1, duration: 1.1, stagger: 0.08 }, 0.45)
+            .to(".hr-frame", { y: 0, scale: 1, opacity: 1, duration: 1.5 }, 0.55),
+        );
+        return () => {
+          stop();
+          split.revert();
+        };
       });
     },
     { scope: ref },
   );
 
-  return (
-    <section ref={ref} id="top" aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-counter">
-      <div className="mx-auto flex min-h-[100svh] max-w-[1600px] flex-col px-4 pb-10 pt-24 md:px-8 md:pt-28">
-        <p className="hr-in mono text-dust">Website designs by Ranvir Kawatra · Delhi</p>
+  // only cycle while the window is on screen
+  useEffect(() => {
+    const io = new IntersectionObserver(([e]) => setOnScreen(e.isIntersecting));
+    io.observe(ref.current!.querySelector(".hr-frame")!);
+    return () => io.disconnect();
+  }, []);
+  useEffect(() => {
+    if (!onScreen || templates.length < 2) return;
+    const id = setTimeout(() => {
+      setPrev(active);
+      setActive((active + 1) % templates.length);
+    }, SLIDE * 1000);
+    return () => clearTimeout(id);
+  }, [active, onScreen]);
+  // the slide that faded out lets go of its image once the fade is done
+  useEffect(() => {
+    if (prev === null) return;
+    const id = setTimeout(() => setPrev(null), 1000);
+    return () => clearTimeout(id);
+  }, [prev]);
 
-        <h1 id="hero-title" className="display isolate mt-4 text-[min(15vw,11.5rem,19svh)] md:mt-6">
-          <Letters text="PICK A" className="inline-block align-top" />{" "}
-          <span className="relative inline-block align-top text-tomato">
-            <Letters text="COLOUR." />
-            {/* wet paint running off the word */}
-            {[
-              ["8%", "0.2em"],
-              ["43%", "0.32em"],
-              ["71%", "0.14em"],
-              ["88%", "0.26em"],
-            ].map(([left, h], i) => (
-              <span
-                key={i}
-                aria-hidden
-                className="hr-drip absolute top-[84%] z-10 w-[0.055em] origin-top rounded-b-full bg-tomato"
-                style={{ left, height: h }}
-              />
-            ))}
-          </span>
-          <Letters text="GET A WEBSITE." />
+  const t = templates[active];
+
+  return (
+    <section ref={ref} id="top" aria-labelledby="hero-title" className="relative overflow-hidden pt-28 md:pt-36">
+      {/* a faint warm light behind the window */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-[38%] -z-10 h-[70vmax] w-[70vmax] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgb(255_91_46/0.07),transparent_60%)]"
+      />
+      <div className="wrap">
+        <p className="hr-in label flex flex-wrap justify-between gap-2 text-muted">
+          <span>Website templates by Ranvir Kawatra</span>
+          <span className="hidden sm:inline">Built in Delhi, for anywhere</span>
+        </p>
+
+        <h1 id="hero-title" className="hr-title h-display mt-8 max-w-[15ch] text-[clamp(2.7rem,7.4vw,7.6rem)] md:mt-10">
+          Websites ready to launch, <span className="serif text-accent">rebuilt</span> around your business.
         </h1>
 
-        <div className="relative mt-8 grid flex-1 grid-cols-1 gap-10 md:mt-10 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-5">
-            <p className="hr-in max-w-[34ch] text-[1.15rem] leading-relaxed text-ink/80 md:text-[1.25rem]">
-              Ready-made website designs, each one built from a blank page. Pick the one that feels like your business, and I rebuild it
-              around your name, your words and your photos.
-            </p>
-            <div className="hr-in mt-7 flex flex-wrap gap-3">
-              <AnchorLink href="#deck" className="btn bg-ink text-card">
-                Browse the deck <span aria-hidden>↓</span>
-              </AnchorLink>
-              <a href={whatsapp()} target="_blank" rel="noreferrer" className="btn bg-card ring-1 ring-ink/20">
-                Ask on WhatsApp <span aria-hidden>↗</span>
-              </a>
-            </div>
+        <div className="mt-8 flex flex-col gap-8 md:mt-12 md:flex-row md:items-end md:justify-between">
+          <p className="hr-in max-w-[44ch] text-[1.08rem] leading-relaxed text-muted md:text-[1.2rem]">
+            Ready-made designs, each one built from a blank page. Pick the one that fits, send me your details, and I turn it into your
+            site.
+          </p>
+          <div className="hr-in flex flex-wrap gap-3">
+            <a
+              href="#templates"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToHash("#templates");
+              }}
+              data-magnetic
+              className="btn btn-light"
+            >
+              Browse templates <span aria-hidden>↓</span>
+            </a>
+            <a href={whatsapp()} target="_blank" rel="noreferrer" data-magnetic className="btn btn-ghost">
+              Talk on WhatsApp
+            </a>
           </div>
+        </div>
 
-          {/* the fan */}
-          <div
-            className="relative min-h-[min(62vw,22rem)] lg:col-span-7 lg:min-h-[calc(var(--ch)*1.05)]"
-            style={{ "--cw": "clamp(78px, min(10.5vw, 15svh), 158px)", "--ch": "calc(var(--cw) * 1.62)" } as CSSProperties}
-          >
-            <div className="hr-fan absolute bottom-[calc(var(--ch)*0.1)] left-1/2 will-change-transform" style={{ transformOrigin: "50% 50%" }}>
-              {fanChips.map((c, i) => {
-                const body = (
+        {/* the window onto the templates */}
+        <div className="hr-frame mt-12 md:mt-16">
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-raised shadow-[0_60px_120px_-40px_rgb(0_0_0/0.9)]">
+            <div className="flex h-10 items-center gap-3 border-b border-white/10 px-4">
+              <span className="flex gap-1.5" aria-hidden>
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+              </span>
+              <span className="label truncate rounded-md bg-white/5 px-3 py-1 normal-case tracking-normal text-muted">{host(t.url)}</span>
+              <button
+                type="button"
+                onClick={() => scrollToHash(`#${t.id}`)}
+                className="label -my-2 ml-auto hidden shrink-0 py-3 text-muted transition-colors hover:text-fg sm:block"
+              >
+                Details <span aria-hidden>↓</span>
+              </button>
+            </div>
+            <div className="relative aspect-[4/3] overflow-hidden bg-raised-2 [container-type:size] md:aspect-[16/8]">
+              {templates.map((x, i) => {
+                const s = shots(x);
+                const here = i === active;
+                if (!here && i !== prev) return null;
+                return (
                   <div
-                    className="chip h-full w-full transition-transform duration-500 ease-out-expo group-hover:-translate-y-[14%]"
-                    style={{ "--paint": c.paint } as CSSProperties}
+                    key={x.id}
+                    aria-hidden={!here}
+                    className={`absolute inset-0 ${here ? "z-[1] animate-[fade-in_900ms_ease-out_both]" : "is-off"}`}
                   >
-                    {c.name && (
-                      <span className="mono absolute left-2.5 top-2.5 text-[0.58rem]" style={{ color: onColor(c.paint) }}>
-                        {c.code}
-                      </span>
-                    )}
-                    <div className="chip-label mt-auto px-2.5 pb-2 pt-1.5">
-                      <div className="flex items-center justify-between gap-1">
-                        <span className="display truncate text-[calc(var(--cw)*0.16)] leading-none">{c.name || " "}</span>
-                        <span className="chip-hole shrink-0" />
-                      </div>
-                    </div>
-                  </div>
-                );
-                const style = {
-                  width: "var(--cw)",
-                  height: "var(--ch)",
-                  left: "calc(var(--cw) / -2)",
-                  top: "calc(var(--ch) * -0.9)",
-                  transformOrigin: "50% 90%",
-                } as CSSProperties;
-                return c.id ? (
-                  <button
-                    key={i}
-                    type="button"
-                    aria-label={`Go to ${c.name}`}
-                    onClick={() => scrollToHash(`#${c.id}`)}
-                    className="hr-chip group absolute block will-change-transform"
-                    style={style}
-                  >
-                    {body}
-                  </button>
-                ) : (
-                  <div key={i} aria-hidden className="hr-chip absolute will-change-transform" style={style}>
-                    {body}
+                    <Image
+                      src={s.desktopFull.src}
+                      width={s.desktopFull.width}
+                      height={s.desktopFull.height}
+                      alt={`The ${x.name} template`}
+                      sizes="(min-width: 1024px) 960px, 100vw"
+                      priority={i === 0}
+                      className="roll block h-auto w-full"
+                      style={{ "--roll-time": "40s" } as CSSProperties}
+                    />
                   </div>
                 );
               })}
             </div>
+          </div>
+
+          <div role="tablist" aria-label="Templates in the window" className="mt-4 grid grid-cols-2 gap-x-4 gap-y-1 sm:grid-cols-4">
+            {templates.map((x, i) => (
+              <button
+                key={x.id}
+                type="button"
+                role="tab"
+                aria-selected={i === active}
+                onClick={() => show(i)}
+                className="group relative py-3 text-left"
+              >
+                <span className="absolute inset-x-0 top-0 h-px bg-white/10">
+                  {i === active && (
+                    <span
+                      key={`${active}-${onScreen}`}
+                      className="tab-progress block h-px origin-left bg-accent"
+                      style={{ animationDuration: `${SLIDE}s`, animationPlayState: onScreen ? "running" : "paused" }}
+                    />
+                  )}
+                </span>
+                <span className="label text-faint">{num(i)}</span>
+                <span className={`ml-2 text-[0.95rem] font-medium transition-colors ${i === active ? "text-fg" : "text-muted group-hover:text-fg"}`}>
+                  {x.name}
+                </span>
+                <span className="mt-0.5 hidden truncate text-[0.85rem] text-faint md:block">{x.industry}</span>
+              </button>
+            ))}
           </div>
         </div>
       </div>

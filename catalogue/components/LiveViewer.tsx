@@ -4,7 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState, ty
 import { AnimatePresence, motion } from "motion/react";
 import { getLenis } from "@/lib/scroll";
 import { wantThis } from "@/lib/site";
-import { onColor, templates, type Template } from "@/lib/templates";
+import { templates, type Template } from "@/lib/templates";
 
 type Open = (id: string) => void;
 const LiveCtx = createContext<Open>(() => {});
@@ -13,7 +13,7 @@ export const useLive = () => useContext(LiveCtx);
 const ease = [0.16, 1, 0.3, 1] as const;
 
 /**
- * "Try it live": the real template in a laptop or phone view, loaded only when
+ * "Live preview": the real template in a laptop or phone view, loaded only when
  * asked for. Esc, the close button and the browser's Back button all close it.
  */
 export function LiveProvider({ children }: { children: ReactNode }) {
@@ -56,7 +56,6 @@ function Viewer({ t, onClose }: { t: Template; onClose: () => void }) {
   );
   const [loaded, setLoaded] = useState(false);
   const closeBtn = useRef<HTMLButtonElement>(null);
-  const ink = t.colors.ink;
 
   useEffect(() => {
     const lenis = getLenis();
@@ -76,21 +75,21 @@ function Viewer({ t, onClose }: { t: Template; onClose: () => void }) {
     <motion.div
       role="dialog"
       aria-modal="true"
-      aria-label={`${t.name}, live`}
+      aria-label={`${t.name}, live preview`}
       data-lenis-prevent
-      className="fixed inset-0 z-[95] flex flex-col"
-      style={{ background: t.colors.bg, color: ink }}
-      initial={{ opacity: 0, scale: 0.96, y: 30 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.97, y: 20, transition: { duration: 0.3 } }}
+      className="fixed inset-0 z-[95] flex flex-col bg-bg"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 24, transition: { duration: 0.3 } }}
       transition={{ duration: 0.6, ease }}
     >
-      <div className="flex shrink-0 flex-wrap items-center justify-between gap-2 px-3 py-3 md:px-6">
-        <p className="display text-[1.8rem] leading-none" style={{ color: t.colors.paint }}>
-          {t.name}
+      <div className="wrap flex shrink-0 items-center justify-between gap-3 py-3">
+        <p className="flex items-baseline gap-3">
+          <span className="text-[1.4rem] font-semibold tracking-[-0.03em]">{t.name}</span>
+          <span className="label hidden text-muted sm:inline">{t.industry}</span>
         </p>
         <div className="flex items-center gap-2">
-          <div role="tablist" aria-label="Device" className="hidden rounded-full p-1 ring-1 sm:flex" style={{ ["--tw-ring-color" as string]: `${ink}33` }}>
+          <div role="tablist" aria-label="Device" className="hidden rounded-full border border-white/15 p-1 sm:flex">
             {(["laptop", "phone"] as const).map((d) => (
               <button
                 key={d}
@@ -98,51 +97,34 @@ function Viewer({ t, onClose }: { t: Template; onClose: () => void }) {
                 role="tab"
                 aria-selected={device === d}
                 onClick={() => setDevice(d)}
-                className="mono h-9 rounded-full px-4 transition-colors"
-                style={device === d ? { background: ink, color: t.colors.bg } : undefined}
+                className={`h-8 rounded-full px-4 text-[0.85rem] transition-colors ${device === d ? "bg-fg text-bg" : "text-muted hover:text-fg"}`}
               >
                 {d === "laptop" ? "Laptop" : "Phone"}
               </button>
             ))}
           </div>
-          <button
-            ref={closeBtn}
-            type="button"
-            onClick={onClose}
-            className="btn h-10 px-4"
-            style={{ background: ink, color: t.colors.bg }}
-          >
-            Close · Esc
+          <button ref={closeBtn} type="button" onClick={onClose} className="btn btn-ghost h-10 px-4 text-[0.9rem]">
+            Close
           </button>
         </div>
       </div>
 
-      <div className="relative flex min-h-0 flex-1 items-center justify-center px-2 pb-2 md:px-6 md:pb-4">
+      <div className="relative flex min-h-0 flex-1 items-center justify-center px-2 pb-2 md:px-10 md:pb-4">
         <div
-          className={`relative h-full overflow-hidden bg-white shadow-[0_30px_80px_-30px_rgb(0_0_0/0.6)] transition-[width,border-radius] duration-500 ${
-            device === "phone" ? "aspect-[390/844] max-h-full w-auto max-w-full rounded-[1.6rem] ring-[7px] ring-[#111]" : "w-full rounded-[12px]"
+          className={`relative h-full overflow-hidden bg-white ${
+            device === "phone" ? "aspect-[390/844] max-h-full w-auto max-w-full rounded-[1.6rem] border-[7px] border-[#1a1a1a]" : "w-full rounded-xl border border-white/10"
           }`}
         >
-          {!loaded && (
-            <p className="mono absolute inset-0 grid place-items-center text-ink/60" style={{ background: t.colors.bg, color: ink }}>
-              Opening {t.name}…
-            </p>
-          )}
+          {!loaded && <p className="label absolute inset-0 grid place-items-center bg-raised text-muted">Opening {t.name}…</p>}
           <iframe title={`${t.name} live website`} src={t.url} onLoad={() => setLoaded(true)} className="h-full w-full" />
         </div>
       </div>
 
-      <div className="flex shrink-0 flex-wrap items-center justify-center gap-2 px-3 pb-4 md:justify-end md:px-6">
-        <a href={t.url} target="_blank" rel="noreferrer" className="btn h-11 ring-1" style={{ ["--tw-ring-color" as string]: `${ink}44` }}>
+      <div className="wrap flex shrink-0 flex-wrap items-center justify-center gap-2 pb-4 md:justify-end">
+        <a href={t.url} target="_blank" rel="noreferrer" className="btn btn-ghost h-11 text-[0.9rem]">
           Open in a new tab <span aria-hidden>↗</span>
         </a>
-        <a
-          href={wantThis(t.name)}
-          target="_blank"
-          rel="noreferrer"
-          className="btn h-11"
-          style={{ background: t.colors.paint, color: onColor(t.colors.paint) }}
-        >
+        <a href={wantThis(t.name)} target="_blank" rel="noreferrer" className="btn btn-accent h-11 text-[0.9rem]">
           I want this one <span aria-hidden>↗</span>
         </a>
       </div>

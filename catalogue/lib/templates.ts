@@ -1,7 +1,7 @@
 // ─────────────────────────────────────────────────────────────
 // Every template on the site lives in this one list. Each entry gets its own
-// chip in the deck, its own room, the colour flood, the live viewer, the
-// WhatsApp message and a dot in the bottom bar, all automatically.
+// row in the index, its own section, a slot in the hero viewer, the live
+// preview and the WhatsApp message, all automatically.
 //
 // To add a template:
 //   1. npm run capture -- <id> <live-url>     (from the TEMPLATES folder)
@@ -15,14 +15,12 @@ export type Template = {
   id: string;
   name: string;
   industry: string;
-  /** The paint name printed on its chip. */
-  finish: string;
   /** One or two plain sentences, first person. */
   story: string;
   /** Kinds of business it suits. */
   goodFor: string;
   url: string;
-  /** paint: the chip and buttons · bg: the room's flood · ink: text on the flood. */
+  /** paint: the template's accent · bg and ink: its own background and text colours. */
   colors: { paint: string; bg: string; ink: string };
   palette: string[];
   fonts: string;
@@ -34,7 +32,6 @@ export const templates: Template[] = [
     id: "noir",
     name: "NOIR",
     industry: "Café & bakery",
-    finish: "Espresso Cherry",
     story:
       "A neighbourhood café told like its own printed menu. The day unfolds as a photo essay, with coffee bag labels, pencil notes, an opening-hours badge that is always current, and a booking slip at the end.",
     goodFor: "Cafés, bakeries, restaurants and bars",
@@ -48,7 +45,6 @@ export const templates: Template[] = [
     id: "vanta",
     name: "VANTA",
     industry: "Fashion studio",
-    finish: "Acid Lime",
     story:
       "An independent fashion label that introduces its people before its clothes. The wordmark stretches open, team portraits develop as you scroll, the founder's letter holds still while you read, and the shop follows your cursor.",
     goodFor: "Fashion labels, boutiques, makers and studios",
@@ -62,7 +58,6 @@ export const templates: Template[] = [
     id: "atelier",
     name: "ATELIER",
     industry: "Architecture practice",
-    finish: "Blueprint Blue",
     story:
       "An architecture practice presented like a folded card model. An accordion screen opens the site, photos unfold along their crease, an exploded axonometric explains the process, and a blueprint room holds the details.",
     goodFor: "Architects, interior designers, builders and real estate",
@@ -76,7 +71,6 @@ export const templates: Template[] = [
     id: "nova",
     name: "NOVA",
     industry: "Creative technology studio",
-    finish: "Signal Orange",
     story:
       "A creative technology studio built like an instrument. A dot field reacts to your cursor, the project index plays in a live viewer, a 12-week mission-control timeline shows how the work runs, and the brief reads like a small program.",
     goodFor: "Agencies, tech studios, startups and freelancers",
@@ -88,8 +82,8 @@ export const templates: Template[] = [
   },
 ];
 
-/** "RK-01" for the first template, and so on. */
-export const code = (i: number) => `RK-${String(i + 1).padStart(2, "0")}`;
+/** "01" for the first template, and so on. */
+export const num = (i: number) => String(i + 1).padStart(2, "0");
 
 type Size = { w: number; h: number };
 type Shots = Record<"desktop" | "desktop-full" | "mobile" | "mobile-full", Size>;
@@ -111,8 +105,5 @@ export function onColor(hex: string) {
     return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
   };
   const L = 0.2126 * lin((n >> 16) & 255) + 0.7152 * lin((n >> 8) & 255) + 0.0722 * lin(n & 255);
-  return L > 0.36 ? "#151310" : "#FBF8F2";
+  return L > 0.36 ? "#0A0A0A" : "#EDEBE6";
 }
-
-/** True for a dark room (light text). */
-export const isDark = (t: Template) => onColor(t.colors.bg) !== "#151310";
