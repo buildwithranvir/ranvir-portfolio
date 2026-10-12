@@ -25,8 +25,6 @@ export const studio = {
     process.env.NEXT_PUBLIC_CONTACT_URL ?? "https://wa.me/918595856713?text=Hi%20Ranvir%2C%20I%27d%20like%20to%20talk%20about%20a%20project.",
   location: "Delhi, India",
   reach: "Taking on clients worldwide",
-  /** The templates site, linked from the work section. */
-  templatesUrl: "https://templatesbyranvir.vercel.app",
   experienceYears: 3,
   socials: [
     { label: "Instagram", handle: "@buildwithranvir", href: "https://www.instagram.com/buildwithranvir/" },

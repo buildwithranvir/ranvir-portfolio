@@ -1,13 +1,12 @@
 {
   "name": "studio-templates",
   "private": true,
-  "description": "Ranvir Kawatra's portfolio, his templates site and the concept websites they present. Each folder is its own Next.js project.",
+  "description": "Ranvir Kawatra's portfolio and the concept websites it presents. Each folder is its own Next.js project.",
   "scripts": {
     "install:all": "node scripts/run-all.mjs install",
     "dev:all": "node scripts/dev-all.mjs",
     "build:all": "node scripts/run-all.mjs build",
-    "lint:all": "node scripts/run-all.mjs lint",
-    "capture": "node scripts/capture-template.mjs"
+    "lint:all": "node scripts/run-all.mjs lint"
   },
   "devDependencies": {
     "playwright": "^1.63.0"

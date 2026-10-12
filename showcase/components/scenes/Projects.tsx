@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import { demos, sceneNo, studio, type Demo } from "@/lib/site";
+import { demos, sceneNo, type Demo } from "@/lib/site";
 import { previews } from "@/lib/previews";
 import { gsap, MOTION_OK, useGSAP } from "@/lib/gsap";
 import { AnchorLink } from "../ui/AnchorLink";
@@ -341,20 +341,6 @@ function Overview() {
             );
           })}
         </ul>
-        <div className="mt-10 flex justify-center md:mt-14">
-          <a
-            href={studio.templatesUrl}
-            target="_blank"
-            rel="noreferrer"
-            data-frame-hover
-            className="hud group flex h-12 items-center gap-3 rounded-full bg-tungsten pl-5 pr-2 text-void transition-colors duration-300 hover:bg-amber"
-          >
-            See all templates
-            <span aria-hidden className="grid h-8 w-8 place-items-center rounded-full bg-void text-tungsten transition-transform duration-500 group-hover:rotate-45">
-              ↗
-            </span>
-          </a>
-        </div>
       </div>
     </section>
   );
