@@ -2,7 +2,9 @@
 
 The portfolio of Ranvir Kawatra, a creative web developer in Delhi. Live at **https://buildwithranvir.vercel.app**.
 
-It is a single page told like a short film: an opening title sequence, the services, four concept sites shown in their own colours, live client work, the toolkit, the process and a contact section that builds a WhatsApp message for you.
+It is a single page told like a short film: an opening title sequence, the services, concept sites shown in their own colours, live client work, the toolkit, the process and a contact section that builds a WhatsApp message for you.
+
+The full overview, with screenshots, is in the [repository README](../README.md).
 
 ## Run it
 
